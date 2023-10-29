@@ -12,10 +12,7 @@ export async function createPokemon(pokemon: Pokemon, repository: PokemonReposit
 }
 
 export async function getAllPokemon(repository: PokemonRepository): Promise<Pokemon[]> {
-    console.log("on est laa")
     // Appeler la méthode du référentiel pour récupérer tous les Pokémon
-
-    console.log("efsefs")
     const allPokemon = await repository.getAllPokemon();
     return allPokemon;
 }
