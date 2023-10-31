@@ -1,0 +1,6 @@
+run = "npm run start"
+
+[deployment]
+deploymentTarget = "gce"
+build = ["sh", "-c", "npm run build"]
+run = ["sh", "-c", "npm run start"]
