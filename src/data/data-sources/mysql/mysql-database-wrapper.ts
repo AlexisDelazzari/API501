@@ -13,7 +13,6 @@ export class MysqlDatabase implements MysqlDatabaseWrapper {
     query(sql: string, values?: any[]): Promise<any> {
         return new Promise((resolve, reject) => {
             this.pool.query(sql, values, (err, results) => {
-                console.log('aaaaa', err,  )
                 if (err) {
                     reject(err);
                 } else {

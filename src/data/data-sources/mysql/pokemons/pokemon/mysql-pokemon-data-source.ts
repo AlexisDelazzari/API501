@@ -1,4 +1,4 @@
-// data/data-sources/mysql/mysql-pokemon-data-source.ts
+
 import { MysqlDatabaseWrapper } from '../../../../interfaces/data-sources/mysql/mysql-database-wrapper';
 import { Pokemon } from '../../../../../domain/models/pokemon';
 import { PokemonRepository } from '../../../../../domain/interfaces/repositories/pokemon-repository';

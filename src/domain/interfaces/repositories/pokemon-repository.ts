@@ -2,6 +2,5 @@
 import { Pokemon } from '../../models/pokemon';
 
 export interface PokemonRepository {
-    createPokemon(pokemon: Pokemon): Promise<void>;
-    getAllPokemon(): Promise<Pokemon[]>;
+    getOnePokemon(id : number): Promise<Pokemon[]>;
 }

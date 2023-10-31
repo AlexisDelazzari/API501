@@ -1,45 +1,39 @@
-// Interfaces
-
-// Attaque
-interface Attaque {
+export interface Attaque {
     id: number;
+    nom: string;
     niveau: number;
 }
 
-// Statistique
-interface Statistique {
-    "point de vie": number;
+export interface Statistique {
+    hp: number;
     attaque: number;
     defense: number;
-    "attaque special": number;
-    "defense special": number;
+    attaqueSpeciale: number;
+    defenseSpeciale: number;
     vitesse: number;
     total: number;
 }
 
-// Loot
-interface Loot {
+export interface Loot {
     idItem: number;
     taux: number;
+    nom: string;
     nombre: number[];
 }
 
-// Pokémon
-interface Pokemon {
+export interface Pokemon {
     id: number;
     nom: string;
-    "type 1": number;
-    "type 2": number | null;
+    type1: string | number;
+    type2?: string | null;
     evolution: number;
     evolutionId: number;
-    sexe: string;
     image: string;
-    desciption: string;
+    description: string;
     taille: string;
     poids: string;
-    talent1: number;
-    talent2: number;
-    nature: string;
+    talent1: string;
+    talent2?: string | null;
     attaques: Attaque[];
     statistique: Statistique;
     lieux: string[];
@@ -47,12 +41,3 @@ interface Pokemon {
     xp: number;
     loot: Loot[];
 }
-
-// Item
-interface Item {
-    id: number;
-    // ... (other properties)
-}
-
-// Export des interfaces
-export { Pokemon, Item };

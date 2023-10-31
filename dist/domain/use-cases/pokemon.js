@@ -9,16 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllPokemon = exports.createPokemon = void 0;
-function createPokemon(pokemon, repository) {
-    return __awaiter(this, void 0, void 0, function* () {
-        // Valider les données du Pokémon si nécessaire
-        // Appeler la méthode du référentiel pour créer un Pokémon
-        yield repository.createPokemon(pokemon);
-        return pokemon;
-    });
-}
-exports.createPokemon = createPokemon;
+exports.getAllPokemon = void 0;
+// export async function createPokemon(pokemon: Pokemon, repository: PokemonRepository): Promise<Pokemon> {
+//     // Valider les données du Pokémon si nécessaire
+//
+//     // Appeler la méthode du référentiel pour créer un Pokémon
+//     await repository.createPokemon(pokemon);
+//
+//     return pokemon;
+// }
 function getAllPokemon(repository) {
     return __awaiter(this, void 0, void 0, function* () {
         // Appeler la méthode du référentiel pour récupérer tous les Pokémon
