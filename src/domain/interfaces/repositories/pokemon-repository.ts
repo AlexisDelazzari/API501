@@ -3,4 +3,5 @@ import { Pokemon } from '../../models/pokemon';
 
 export interface PokemonRepository {
     getOnePokemon(id : number): Promise<Pokemon[]>;
+    getAllPokemon(): Promise<Pokemon[]>;
 }
