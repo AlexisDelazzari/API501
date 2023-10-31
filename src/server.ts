@@ -1,14 +1,24 @@
 import express from 'express';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import options from '../swaggerOptions.js';
 import {PokemonRoutes} from './presentation/routers/pokemons/pokemons-router';
+import {PokedexRoutes} from "./presentation/routers/pokedex/pokedex-router";
+import {mainRouter} from "./presentation/routers/main-router";
 
-export function startServer() {
+export function startServer(port : number) {
     const app = express();
-    const port = 3000;
 
+    const specs = swaggerJsdoc(options);
     app.use(express.json());
-    app.use('/', PokemonRoutes);
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-    app.listen(port, () => {
+
+    app.use('/', mainRouter);
+    app.use('/', PokemonRoutes);
+    app.use('/', PokedexRoutes);
+
+    return app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
-    });
+    })
 }

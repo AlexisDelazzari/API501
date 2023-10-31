@@ -10,12 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PokemonRoutes = exports.PokemonRouterInstance = void 0;
-// pokemons-router.ts
+// pokedex-router.ts
 const express_1 = require("express");
 const pokemon_1 = require("../../../domain/use-cases/pokemon");
 const mysql_pokemon_data_source_1 = require("../../../data/data-sources/mysql/pokemons/pokemon/mysql-pokemon-data-source");
 const mysql_database_wrapper_1 = require("../../../data/data-sources/mysql/mysql-database-wrapper");
-const json_pokemon_data_source_1 = require("../../../data/data-sources/json/pokemons/json-pokemon-data-source"); // Importe le repository
+const json_pokedex_data_source_1 = require("../../../data/data-sources/json/pokedex/json-pokedex-data-source"); // Importe le repository
 // Crée une instance du wrapper de base de données MySQL
 const mysqlDatabase = new mysql_database_wrapper_1.MysqlDatabase({
     user: 'burnel12u_appli',
@@ -31,7 +31,7 @@ const mysqlDatabase = new mysql_database_wrapper_1.MysqlDatabase({
 // }
 // Crée une instance de la source de données des Pokémon pour MySQL
 const mysqlPokemonDataSource = new mysql_pokemon_data_source_1.MysqlPokemonDataSource(mysqlDatabase);
-const jsonPokemonDataSource = new json_pokemon_data_source_1.JSONPokemonDataSource();
+const jsonPokemonDataSource = new json_pokedex_data_source_1.JsonPokedexDataSource();
 class PokemonsRouter {
     constructor(pokemonRepository) {
         this.router = (0, express_1.Router)();
@@ -39,22 +39,22 @@ class PokemonsRouter {
         this.initializeRoutes();
     }
     initializeRoutes() {
-        this.router.post('/pokemon', this.createPokemonHandler.bind(this)); // Utilise bind pour lier la méthode à l'instance de la classe
+        // this.router.post('/pokemon', this.createPokemonHandler.bind(this));  // Utilise bind pour lier la méthode à l'instance de la classe
         this.router.get('/pokemon', this.getAllPokemonHandler.bind(this));
     }
     // @Low
-    createPokemonHandler(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                // Utilise this.pokemonRepository pour accéder au repository
-                const newPokemon = yield (0, pokemon_1.createPokemon)(req.body, this.pokemonRepository);
-                res.json(newPokemon);
-            }
-            catch (error) {
-                res.status(500).json({ error: 'Internal Server Error' });
-            }
-        });
-    }
+    // private async createPokemonHandler(req: Request, res: Response): Promise<void> {
+    //
+    //     try {
+    //         // Utilise this.pokemonRepository pour accéder au repository
+    //         const newPokemon = await createPokemon(req.body, this.pokemonRepository);
+    //
+    //         res.json(newPokemon);
+    //     } catch (error) {
+    //         res.status(500).json({error: 'Internal Server Error'});
+    //     }
+    //
+    // }
     getAllPokemonHandler(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

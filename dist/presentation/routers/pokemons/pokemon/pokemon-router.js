@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PokemonRoutes = exports.PokemonRouterInstance = void 0;
-// pokemons-router.ts
+// pokedex-router.ts
 const express_1 = require("express");
 const pokemon_1 = require("../../../../domain/use-cases/pokemon");
 const mysql_pokemon_data_source_1 = require("../../../../data/data-sources/mysql/pokemons/pokemon/mysql-pokemon-data-source");
