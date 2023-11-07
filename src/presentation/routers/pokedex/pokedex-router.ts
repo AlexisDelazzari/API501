@@ -17,11 +17,11 @@ const jsonPokemonDataSource = new JsonPokedexDataSource()
  */
 export class PokedexRouter {
     public router: Router;
-    private pokemonRepository: PokedexRepository;  // Ajoute le repository comme propriété privée
+    private pokedexRepository: PokedexRepository;  // Ajoute le repository comme propriété privée
 
-    constructor(pokemonRepository: PokedexRepository) {
+    constructor(pokedexRepository: PokedexRepository) {
         this.router = Router();
-        this.pokemonRepository = pokemonRepository;  // Injecte le repository via le constructeur
+        this.pokedexRepository = pokedexRepository;  // Injecte le repository via le constructeur
         this.initializeRoutes();
     }
 
@@ -41,7 +41,7 @@ export class PokedexRouter {
          *       500 :
          *         description : Erreur du serveur
          */
-        this.router.get('/pokedex', this.getAllPokemonHandler.bind(this));
+        this.router.get('/pokedex', this.getAllPokedexHandler.bind(this));
 
         /**
          * @swagger
@@ -65,13 +65,13 @@ export class PokedexRouter {
          *       500 :
          *         description : Erreur du serveur
          */
-        this.router.get('/pokedex/:id', this.getOnePokemonHandler.bind(this));
+        this.router.get('/pokedex/:id', this.getOnePokedexHandler.bind(this));
     }
 
-    private async getAllPokemonHandler(req: Request, res: Response): Promise<void> {
+    private async getAllPokedexHandler(req: Request, res: Response): Promise<void> {
         try {
             // Utilise this.pokemonRepository pour accéder au repository
-            const allPokemon = await getAllPokedex(this.pokemonRepository);
+            const allPokemon = await getAllPokedex(this.pokedexRepository);
             res.json(allPokemon);
         } catch (error) {
             res.status(500).json({error: 'Internal Server Error'});
@@ -79,11 +79,11 @@ export class PokedexRouter {
     }
 
 
-    private async getOnePokemonHandler(req: Request, res: Response): Promise<void> {
+    private async getOnePokedexHandler(req: Request, res: Response): Promise<void> {
         try {
             // Utilise this.pokemonRepository pour accéder au repository
             const id = req.params.id
-            const pokemon = await getOnePokedex(this.pokemonRepository, Number(id));
+            const pokemon = await getOnePokedex(this.pokedexRepository, Number(id));
 
             if (!pokemon) {
                 res.status(404).json({error: "Pokemon not found"})

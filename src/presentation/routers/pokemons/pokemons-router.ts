@@ -20,6 +20,12 @@ import {getAllPokedex} from "../../../domain/use-cases/pokedex/pokedex";  // Imp
 // const mysqlPokemonDataSource = new MysqlPokemonDataSource(mysqlDatabase);
 const jsonPokemonDataSource = new JsonPokemonDataSource()
 
+/**
+ * @swagger
+ * tags :
+ * - name : Pokemon
+ *   description : Opérations liées au Pokemon
+ */
 class PokemonsRouter {
     public router: Router;
     private readonly pokemonRepository: PokemonRepository;  // Ajoute le repository comme propriété privée
@@ -32,6 +38,21 @@ class PokemonsRouter {
 
     private initializeRoutes(): void {
         // this.router.post('/pokemon', this.createPokemonHandler.bind(this));  // Utilise bind pour lier la méthode à l'instance de la classe
+        
+        
+        /**
+         * @swagger
+         * /Pokemon :
+         *   get :
+         *     description : Récuperer tous les pokémons sauvage, je suppose pour l'instant.
+         *     tags :
+         *       - Pokemon
+         *     responses :
+         *       200 :
+         *         description : Succès
+         *       500 :
+         *         description : Erreur du serveur
+         */
         this.router.get('/pokemon', this.getAllPokemonHandler.bind(this));
     }
 
@@ -50,7 +71,7 @@ class PokemonsRouter {
     //
     // }
 
-    
+
     private async getAllPokemonHandler(req: Request, res: Response): Promise<void> {
         try {
             // Utilise this.pokemonRepository pour accéder au repository

@@ -67,7 +67,7 @@
   {
     "id": 1,
     "nom": "Tortipouss",
-    "type1": "plante",
+    "type1" :  3,
     "type2": null,
     "evolution": 14,
     "evolutionId": 2,
@@ -132,7 +132,7 @@
   {
     "id": 4,
     "nom": "Grimèche",
-    "type1": "feu",
+    "type1": 3,
     "type2": null,
     "evolution": 14,
     "evolutionId": 5,

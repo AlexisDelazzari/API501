@@ -1,7 +1,8 @@
 // domain/interfaces/repositories/pokemon-repository.ts
-import { Pokemon } from '../../models/pokemon';
+import { Pokedex } from '../../models/pokedex/pokedex';
+import PokemonSauvage from "../../models/pokemon/sauvage/pokemonSauvage";
 
 export interface PokemonRepository {
-    getOnePokemon(id : number): Promise<Pokemon[]>;
-    getAllPokemon(): Promise<Pokemon[]>;
+    getOnePokemon(id : number): Promise<PokemonSauvage[]>;
+    getAllPokemon(): Promise<PokemonSauvage[]>;
 }

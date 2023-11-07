@@ -5,6 +5,7 @@ import options from '../swaggerOptions.js';
 import {PokemonRoutes} from './presentation/routers/pokemons/pokemons-router';
 import {PokedexRoutes} from "./presentation/routers/pokedex/pokedex-router";
 import {mainRouter} from "./presentation/routers/main-router";
+import {SauvageRoutes} from "./presentation/routers/pokemons/sauvage/sauvage-router";
 
 export function startServer(port : number) {
     const app = express();
@@ -16,6 +17,7 @@ export function startServer(port : number) {
 
     app.use('/', mainRouter);
     app.use('/', PokemonRoutes);
+    app.use('/', SauvageRoutes)
     app.use('/', PokedexRoutes);
 
     return app.listen(port, () => {

@@ -6,31 +6,26 @@ import request from 'supertest';
 import express, {Express, response} from 'express';
 import {PokedexRouter, PokedexRoutes} from '../../../../presentation/routers/pokedex/pokedex-router';
 import {JsonPokedexDataSource} from '../../../../data/data-sources/json/pokedex/json-pokedex-data-source';
-import {Pokedex} from "../../../../domain/models/pokedex/pokedex";
+import {Pokemon} from "../../../../domain/models/pokemon";
 import {describe} from "node:test";
 import exp from "constants";
 
 
 export class ErrorPokedexDataSource implements PokedexRepository {
-    async getAllPokemon(): Promise<Pokedex[]> {
+    async getAllPokemon(): Promise<Pokemon[]> {
         // Mapping des résultats de la base de données vers le modèle Pokemon
         throw new Error('Simulated error in rejectGetAllPokemon');
     }
 
-    async getOnePokemon(id: number): Promise<Pokedex | undefined> {
+    async getOnePokemon(id: number): Promise<Pokemon | undefined> {
         throw new Error('Simulated error in rejectGetAllPokemon');
     }
-
-    async rejectGetAllPokemon(): Promise<void> {
-        throw new Error('Simulated error in rejectGetAllPokemon');
-    }
-
-
+    
 }
 
 describe('PokedexRouter', () => {
     let app: express.Application;
-        let response = undefined
+    let response = undefined
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -246,7 +241,7 @@ describe('PokedexRouter', () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual(expectedResponse);
     });
-    
+
     it('should  get one Pokemon from the Pokedex', async () => {
         // Arrange
         const id = 1;
@@ -317,7 +312,7 @@ describe('PokedexRouter', () => {
         };
         (JsonPokedexDataSource.prototype.getOnePokemon as jest.Mock).mockResolvedValue(expectedResponse);
         // Act
-         response = await request(app).get(`/pokedex/${id}`);
+        response = await request(app).get(`/pokedex/${id}`);
 
         // Assert
         expect(response.status).toBe(200);
@@ -336,7 +331,7 @@ describe('PokedexRouter', () => {
         expect(response.status).toBe(404);
         expect(response.body).toEqual(expectedResponse);
     });
-    
+
 });
 describe('PokedexRouter Error', () => {
     let app: express.Application;
@@ -368,5 +363,5 @@ describe('PokedexRouter Error', () => {
         expect(response.status).toBe(500);
         expect(response.body).toEqual({error: 'Internal Server Error'});
     });
-    
+
 });
