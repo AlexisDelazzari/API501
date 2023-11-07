@@ -2,5 +2,5 @@ run = "npm run start"
 
 [deployment]
 deploymentTarget = "gce"
-build = ["sh", "-c", "npm run build"]
+build = ["sh", "-c", "npm install"]
 run = ["sh", "-c", "npm run start"]
