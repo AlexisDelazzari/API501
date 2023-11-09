@@ -3,10 +3,13 @@ import {getAllPokedex, getOnePokedex} from '../../../domain/use-cases/pokedex/po
 import {PokedexRepository} from '../../../domain/interfaces/repositories/pokedex/pokedex-repository';
 import {MysqlPokemonDataSource} from "../../../data/data-sources/mysql/pokemons/pokemon/mysql-pokemon-data-source";
 import {JsonPokedexDataSource} from "../../../data/data-sources/json/pokedex/json-pokedex-data-source";
+import {MysqlPokedexDataSource} from "../../../data/data-sources/mysql/pokedex/mysql-pokedex-data-source";
+import {dbConfig} from "../../../data/interfaces/data-sources/mysql/db-connnect";
 
 // Crée une instance de la source de données des Pokémon pour MySQL
 // const mysqlPokemonDataSource = new MysqlPokemonDataSource(mysqlDatabase);
 const jsonPokemonDataSource = new JsonPokedexDataSource()
+const mysqlPokemonDataSource = new MysqlPokedexDataSource(dbConfig)
 
 
 /**
@@ -98,5 +101,5 @@ export class PokedexRouter {
     }
 }
 
-export const PokedexRouterInstance = new PokedexRouter(jsonPokemonDataSource);
+export const PokedexRouterInstance = new PokedexRouter(mysqlPokemonDataSource);
 export const PokedexRoutes = PokedexRouterInstance.router;

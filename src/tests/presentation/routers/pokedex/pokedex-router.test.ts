@@ -9,6 +9,7 @@ import {JsonPokedexDataSource} from '../../../../data/data-sources/json/pokedex/
 import {Pokedex} from "../../../../domain/models/pokedex/pokedex";
 import {describe} from "node:test";
 import exp from "constants";
+import {MysqlPokedexDataSource} from "../../../../data/data-sources/mysql/pokedex/mysql-pokedex-data-source";
 
 
 export class ErrorPokedexDataSource implements PokedexRepository {
@@ -238,7 +239,7 @@ describe('PokedexRouter', () => {
                 ]
             }
         ];
-        (JsonPokedexDataSource.prototype.getAllPokemon as jest.Mock).mockResolvedValue(expectedResponse);
+        (MysqlPokedexDataSource.prototype.getAllPokemon as jest.Mock).mockResolvedValue(expectedResponse);
         // Act
         response = await request(app).get('/pokedex');
 
