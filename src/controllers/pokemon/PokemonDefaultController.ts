@@ -15,7 +15,9 @@ export class PokemonDefaultController {
 
     private async getAllPokemonHandler(req: Request, res: Response): Promise<void> {
         try {
+            console.log("getAllPokemonHandler");
             const allPokemon = await DefaultPokemonRepository.getAllPokemon();
+            console.log(allPokemon, "allPokemon");
             res.status(HttpCode.OK).json(allPokemon);
             //!TODO: return allPokemon with model
 

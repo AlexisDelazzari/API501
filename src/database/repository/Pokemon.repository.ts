@@ -1,7 +1,7 @@
-import { AppDataSource } from "../../data-source"
+import { dataSource} from "../../config/ormconfig";
 import { PokemonEntity } from "../entity/Pokemon.entity";
 
-export const PokemonRepository = AppDataSource.getRepository(PokemonEntity).extend({
+export const PokemonRepository = dataSource.getRepository(PokemonEntity).extend({
     async getSauvageById(id: number) {
         return this.findOne(id);
     }

@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 //!import swaggerJsdoc from 'swagger-jsdoc';
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
@@ -19,10 +19,8 @@ export function startServer(port : number) {
 
     app.use('/check', checkController.router);
 
-
     app.use('/default-pokemon', pokemonDefaultController.router);
     app.use('/sauvage-pokemon', pokemonSauvageController.router);
-
 
     return app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
