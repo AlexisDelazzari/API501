@@ -1,16 +1,17 @@
-import express, { Handler, Request, Response, Router } from "express";
+import express, {Handler, Request, Response, Router} from "express";
 //!import swaggerJsdoc from 'swagger-jsdoc';
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
-import { CheckController} from "./controllers/CheckController";
-import { PokemonDefaultController } from "./controllers/pokemon/PokemonDefaultController";
-import { PokemonSauvageController } from "./controllers/pokemon/PokemonSauvageController";
+import {CheckController} from "./controllers/CheckController";
+import {PokemonDefaultController} from "./controllers/pokemon/PokemonDefaultController";
+import {PokemonSauvageController} from "./controllers/pokemon/PokemonSauvageController";
 import "reflect-metadata";
 import "dotenv/config";
 import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
-import { dataSource } from "./config/ormconfig";
+import {dataSource} from "./config/ormconfig";
+
 class Server {
 
     private app: express.Application;
