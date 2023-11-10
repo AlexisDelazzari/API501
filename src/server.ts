@@ -35,11 +35,12 @@ class Server {
         const pokemonDefaultController = new PokemonDefaultController();
         const pokemonSauvageController = new PokemonSauvageController();
 
-
-        this.app.use('/check', checkController.router);
-        this.app.use('/pokemon-default', pokemonDefaultController.router);
-        this.app.use('/pokemon-sauvage', pokemonSauvageController.router);
-
+        //on ajoute les routes des controllers
+        const expressRouter = Router();
+        expressRouter.use('/check', checkController.router);
+        expressRouter.use('/pokemon', pokemonDefaultController.router);
+        expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
+        this.app.use('/api-pokemon', expressRouter);
     }
 
     public start() {

@@ -9,7 +9,7 @@ export const dataSource = new DataSource({
   username: process.env.DB_USERNAME || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "pokemon",
-  synchronize: true,
+  synchronize: false,
   logging: true,
   entities: ["src/database/entity/**/*.ts"],
 });
