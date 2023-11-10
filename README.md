@@ -10,7 +10,7 @@ Currently this is a test project to implement typeorm with express and mysql tha
 ## Steps to run this project:
 
 1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
+2. Setup database settings inside `ormconfig.json` file
 3. Run `npm start` command
 
 ## Stucture of the project

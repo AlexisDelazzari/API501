@@ -5,28 +5,65 @@ import * as express from 'express';
 import { CheckController} from "./controllers/CheckController";
 import { PokemonDefaultController } from "./controllers/pokemon/PokemonDefaultController";
 import { PokemonSauvageController } from "./controllers/pokemon/PokemonSauvageController";
+import "reflect-metadata";
+import "dotenv/config";
+import * as bodyParser from "body-parser";
+import helmet from "helmet";
+import cors from "cors";
+import { dataSource } from "./config/ormconfig";
+class Server {
 
-export function startServer(port : number) {
-    const app = express();
-    app.use(express.json());
+    private app: express.Application;
 
-    //!const specs = swaggerJsdoc(options);
-    //§app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    constructor() {
+        this.app = express();
+        this.configuration();
+        const promise = this.routes();
+    }
 
-    const checkController = new CheckController();
-    const pokemonDefaultController = new PokemonDefaultController();
-    const pokemonSauvageController = new PokemonSauvageController();
+    public configuration() {
+        this.app.set('port', process.env.PORT || 3001);
+        this.app.use(cors());
+        this.app.use(helmet());
+        this.app.use(bodyParser.json());
+    }
 
-    app.use('/check', checkController.router);
+    public async routes() {
+        await dataSource.initialize();
 
-    app.use('/default-pokemon', pokemonDefaultController.router);
-    app.use('/sauvage-pokemon', pokemonSauvageController.router);
+        const checkController = new CheckController();
+        const pokemonDefaultController = new PokemonDefaultController();
+        const pokemonSauvageController = new PokemonSauvageController();
 
-    return app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    })
+
+        this.app.use('/check', checkController.router);
+        this.app.use('/pokemon-default', pokemonDefaultController.router);
+        this.app.use('/pokemon-sauvage', pokemonSauvageController.router);
+
+    }
+
+    public start() {
+        this.app.listen(this.app.get('port'), () => {
+            console.log(`Server is listening on port ${this.app.get('port')}`);
+        });
+    }
 }
 
-startServer(3000)
+const server = new Server();
+server.start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
