@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express, { Handler, Request, Response, Router } from "express";
 //!import swaggerJsdoc from 'swagger-jsdoc';
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
