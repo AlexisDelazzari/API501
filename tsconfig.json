@@ -12,6 +12,8 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-     "allowSyntheticDefaultImports": true
-   }
+      "allowSyntheticDefaultImports": true
+   },
+   "include": ["src/**/*.ts", "swaggerOptions.d.ts"],
+   "exclude": ["node_modules"]
 }

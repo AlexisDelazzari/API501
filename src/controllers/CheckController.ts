@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import HttpCode from '../config/http-code';
 export class CheckController {
     public router: Router;
 
@@ -14,15 +15,26 @@ export class CheckController {
     }
 
     async getCheck(req: Request, res: Response) {
-        return res.json({message: "getCheck"});
+        try {
+            return res.status(HttpCode.OK).json({message: "getCheck"});
+        } catch (e) {
+            return res.status(HttpCode.INTERNAL_ERROR).json({message: "getCheck"});
+        }
     }
 
     async getCheckById(req: Request, res: Response) {
-        return res.json({message: "getCheckById"+req.params.id});
+        try {
+            return res.status(HttpCode.OK).json({message: "getCheckById"+req.params.id});
+        } catch (e) {
+            return res.status(HttpCode.INTERNAL_ERROR).json({message: "getCheckById"});
+        }
     }
 
     async postCheck(req: Request, res: Response) {
-        console.log(req.body);
-        return res.json({message: "postCheck" });
+        try {
+            return res.status(HttpCode.OK).json({message: "postCheck"+req.body});
+        } catch (e) {
+            return res.status(HttpCode.INTERNAL_ERROR).json({message: "postCheck"});
+        }
     }
 }

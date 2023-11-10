@@ -1,15 +1,34 @@
-import { UserController } from './controllers/UserController';
+import express from 'express';
+//!import swaggerJsdoc from 'swagger-jsdoc';
+//!import swaggerUi from 'swagger-ui-express';
+//!import options from '../swaggerOption';
 import { CheckController} from "./controllers/CheckController";
-import * as express from "express";
+import { PokemonDefaultController } from "./controllers/pokemon/PokemonDefaultController";
+import { PokemonSauvageController } from "./controllers/pokemon/PokemonSauvageController";
 
-const app = express();
-app.use(express.json());
-const userController = new UserController();
-const checkController = new CheckController();
+export function startServer(port : number) {
+    const app = express();
+    app.use(express.json());
 
-app.use('/users', userController.router);
-app.use('/check', checkController.router);
+    //!const specs = swaggerJsdoc(options);
+    //§app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
-});
+    const checkController = new CheckController();
+    const pokemonDefaultController = new PokemonDefaultController();
+    const pokemonSauvageController = new PokemonSauvageController();
+
+    app.use('/check', checkController.router);
+
+
+    app.use('/default-pokemon', pokemonDefaultController.router);
+    app.use('/sauvage-pokemon', pokemonSauvageController.router);
+
+
+    return app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    })
+}
+
+startServer(3000)
+
+
