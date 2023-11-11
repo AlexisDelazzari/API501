@@ -3,7 +3,7 @@ import express, {Handler, Request, Response, Router} from "express";
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
 import {CheckController} from "./controllers/CheckController";
-import {PokedexController} from "./controllers/pokedex/PokedexController";
+import {DefaultPokemonController} from "./controllers/DefaultPokemonController";
 import {PokemonSauvageController} from "./controllers/pokemon/PokemonSauvageController";
 import "reflect-metadata";
 import "dotenv/config";
@@ -33,7 +33,7 @@ class Server {
         await dataSource.initialize();
 
         const checkController = new CheckController();
-        const pokedexController = new PokedexController();
+        const pokedexController = new DefaultPokemonController();
         const pokemonSauvageController = new PokemonSauvageController();
 
         //on ajoute les routes des controllers

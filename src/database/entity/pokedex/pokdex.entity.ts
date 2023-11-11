@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
-@Entity({ name: "DEFAULT_POKEMON" })
+@Entity()
 export class DEFAULT_POKEMON {
 
     @PrimaryGeneratedColumn()
