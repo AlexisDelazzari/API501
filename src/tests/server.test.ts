@@ -1,19 +1,29 @@
+import { Server } from '../server';
 import request from 'supertest';
-import {startServer} from '../server';
-import {Server} from "net";
-
-describe('Server', () => {
-    let app: Server
+describe('Test des routes', () => {
+    const app = new Server();
+    const link = process.env.URL_TEST+":"+process.env.PORT_TEST;
     beforeAll(() => {
-        app = startServer(3001);
-    })
-
-    it('should respond with 200 OK', async () => {
-        const response = await request(app).get('/check');
-        expect(response.status).toBe(200);
+        app.start(process.env.PORT_TEST);
     });
 
     afterAll(() => {
-        app.close()
-    })
+        app.stop();
+    });
+
+    //on verifie que le server est initialisé
+    it('Initialisé', async () => {
+        expect(app).toBeDefined();
+    });
+
+    //on check la route /check
+       it('Check', async () => {
+           request(link)
+               .get('/check')
+               .expect(200)
+               .end((err, res) => {
+                     if (err) throw err;
+                });
+        });
+
 });
