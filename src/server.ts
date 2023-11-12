@@ -42,7 +42,7 @@ export class Server {
         expressRouter.use('/check', checkController.router);
         expressRouter.use('/pokemon', pokemonDefaultController.router);
         expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
-        this.app.use('/api-pokemon', expressRouter);
+        this.app.use('/', expressRouter);
     }
 
     public start(port: string) {
