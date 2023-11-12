@@ -5,7 +5,7 @@
   },
   "hooks": {
     "before:init": ["git pull"],
-     "after:bump": ["npx auto-changelog -p", "npm run typeorm:generate src/database/migration/${version}"]
+     "after:bump": ["npx auto-changelog -p"]
   },
   "github": {
     "release": true,
