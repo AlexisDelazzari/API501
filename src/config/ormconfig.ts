@@ -13,4 +13,5 @@ export const dataSource = new DataSource({
   synchronize: false,
   logging: false,
   entities: ["src/database/entity/**/*.ts"],
+  migrations: ["src/database/migration/**/*.ts"],
 });

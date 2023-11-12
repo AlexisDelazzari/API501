@@ -1,0 +1,17 @@
+{
+  "git": {
+    "requireBranch": "structurationApi",
+    "commitMessage": "chore: release v${version}"
+  },
+  "hooks": {
+    "before:init": ["git pull"],
+     "after:bump": ["npx auto-changelog -p", "npm run typeorm:generate src/database/migration/${version}"]
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}"
+  },
+  "npm": {
+    "publish": false
+  }
+}
