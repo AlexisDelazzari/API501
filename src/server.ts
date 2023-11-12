@@ -3,7 +3,7 @@ import express, {Handler, Request, Response, Router} from "express";
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
 import {CheckController} from "./controllers/CheckController";
-import {DefaultPokemonController} from "./controllers/DefaultPokemonController";
+import {DefaultPokemonController} from "./controllers/pokemon/DefaultPokemonController";
 import {PokemonSauvageController} from "./controllers/pokemon/PokemonSauvageController";
 import "reflect-metadata";
 import "dotenv/config";

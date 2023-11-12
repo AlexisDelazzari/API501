@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import HttpCode from '../config/http-code';
-import {DefaultPokemonRepository} from "../database/repository/pokedex/pokedex.repository";
+import HttpCode from '../../config/http-code';
+import {DefaultPokemonRepository} from "../../database/repository/pokemons/default-pokemon.repository";
 export class DefaultPokemonController {
     public router: Router;
 

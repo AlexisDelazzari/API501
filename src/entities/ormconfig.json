@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "devbdd.iutmetz.univ-lorraine.fr",
+    "port": 3306,
+    "username": "burnel12u_appli",
+    "password": "Justin55500",
+    "database": "",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]
