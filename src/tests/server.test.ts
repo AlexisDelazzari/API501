@@ -1,4 +1,3 @@
-// server.test.ts
 import request from 'supertest';
 import {startServer} from '../server';
 import {Server} from "net";
@@ -10,7 +9,7 @@ describe('Server', () => {
     })
 
     it('should respond with 200 OK', async () => {
-        const response = await request(app).get('/');
+        const response = await request(app).get('/check');
         expect(response.status).toBe(200);
     });
 
