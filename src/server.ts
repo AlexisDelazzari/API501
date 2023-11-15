@@ -11,10 +11,12 @@ import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import {dataSource} from "./config/ormconfig";
+import * as http from "http";
 
-class Server {
+export class Server {
 
     private app: express.Application;
+    server: http.Server;
 
     constructor() {
         this.app = express();
@@ -41,18 +43,19 @@ class Server {
         expressRouter.use('/check', checkController.router);
         expressRouter.use('/pokedex', pokedexController.router);
         expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
-        this.app.use('/api-pokemon', expressRouter);
+        this.app.use('/', expressRouter);
     }
 
-    public start() {
-        this.app.listen(this.app.get('port'), () => {
-            console.log(`Server is listening on port ${this.app.get('port')}`);
+    public start(port: string) {
+        this.server = this.app.listen(port, () => {
+            console.log(`Server listening on port ${port}`);
         });
     }
-}
+    public async stop() {
+        this.server.close();
+    }
 
-const server = new Server();
-server.start();
+}
 
 
 
