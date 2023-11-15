@@ -6,6 +6,6 @@ export class Sac {
   @PrimaryGeneratedColumn({ type: "int", name: "uuidSac" })
   uuidSac: number;
 
-  @OneToMany(() => Dresseur, (dresseur) => dresseur.uuidSac2)
+  @OneToMany(() => Dresseur, (dresseur) => dresseur.uuidSacDeux)
   dresseurs: Dresseur[];
 }

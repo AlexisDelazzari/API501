@@ -3,7 +3,6 @@ import { NamingStrategy } from "./NamingStrategy";
 import 'dotenv/config'
 
 export const dataSource = new DataSource({
-
   namingStrategy: new NamingStrategy(),
   type: process.env.DB_TYPE === 'mysql' ? 'mysql' : 'mariadb',
   host: process.env.DB_HOST,

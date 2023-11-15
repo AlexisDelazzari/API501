@@ -14,6 +14,6 @@ export class ListDresseur {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidDresseur", referencedColumnName: "uuid" }])
-  uuidDresseur2: Dresseur;
+  @JoinColumn([{ name: "uuidDresseurDeux", referencedColumnName: "uuid" }])
+  uuidDresseurDeux: Dresseur;
 }

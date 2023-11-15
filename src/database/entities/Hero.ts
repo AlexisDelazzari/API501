@@ -37,13 +37,13 @@ export class Hero {
   @Column("int", { name: "hourPlay" })
   hourPlay: number;
 
-  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidProprietaire2)
+  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidProprietaireDeux)
   pokemon: Pokemon[];
 
   @ManyToOne(() => Dresseur, (dresseur) => dresseur.heroes, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidDresseur", referencedColumnName: "uuid" }])
-  uuidDresseur2: Dresseur;
+  @JoinColumn([{ name: "uuidDresseurDeux", referencedColumnName: "uuid" }])
+  uuidDresseurDeux: Dresseur;
 }

@@ -61,9 +61,9 @@ export class Attaque {
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "uuidAttaqueEvol", referencedColumnName: "uuid" }])
-  uuidAttaqueEvol2: Attaque;
+  uuidAttaqueEvolDeux: Attaque;
 
-  @OneToMany(() => Attaque, (attaque) => attaque.uuidAttaqueEvol2)
+  @OneToMany(() => Attaque, (attaque) => attaque.uuidAttaqueEvolDeux)
   attaques: Attaque[];
 
   @ManyToOne(() => Effet, (effet) => effet.attaques, {
@@ -86,6 +86,6 @@ export class Attaque {
   )
   defaultPokemon: DefaultPokemon[];
 
-  @OneToMany(() => ListAttaque, (listAttaque) => listAttaque.uuidAttaque2)
+  @OneToMany(() => ListAttaque, (listAttaque) => listAttaque.uuidAttaqueDeux)
   listAttaques: ListAttaque[];
 }

@@ -26,9 +26,9 @@ export class ListAttaque {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidAttaque", referencedColumnName: "uuid" }])
-  uuidAttaque2: Attaque;
+  @JoinColumn([{ name: "uuidAttaqueDeux", referencedColumnName: "uuid" }])
+  uuidAttaqueDeux: Attaque;
 
-  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidListAttaque2)
+  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidListAttaqueDeux)
   pokemon: Pokemon[];
 }

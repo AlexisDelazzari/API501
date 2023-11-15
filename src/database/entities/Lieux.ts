@@ -44,18 +44,18 @@ export class Lieux {
     { onDelete: "CASCADE", onUpdate: "CASCADE" }
   )
   @JoinColumn([
-    { name: "uuidListDresseurInZone", referencedColumnName: "uuidList" },
+    { name: "uuidListDresseurInZoneDeux", referencedColumnName: "uuidList" },
   ])
-  uuidListDresseurInZone2: ListDresseurInZone;
+  uuidListDresseurInZoneDeux: ListDresseurInZone;
 
   @ManyToOne(() => ListItemInZone, (listItemInZone) => listItemInZone.lieuxes, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   @JoinColumn([
-    { name: "uuidListItemInZone", referencedColumnName: "uuidList" },
+    { name: "uuidListItemInZoneDeux", referencedColumnName: "uuidList" },
   ])
-  uuidListItemInZone2: ListItemInZone;
+  uuidListItemInZoneDeux: ListItemInZone;
 
   @ManyToOne(
     () => ListPokemonInZone,
@@ -63,7 +63,7 @@ export class Lieux {
     { onDelete: "CASCADE", onUpdate: "CASCADE" }
   )
   @JoinColumn([
-    { name: "uuidListPokemonInzone", referencedColumnName: "uuidList" },
+    { name: "uuidListPokemonInzoneDeux", referencedColumnName: "uuidList" },
   ])
-  uuidListPokemonInzone2: ListPokemonInZone;
+  uuidListPokemonInzoneDeux: ListPokemonInZone;
 }

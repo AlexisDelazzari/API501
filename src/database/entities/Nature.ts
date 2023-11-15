@@ -10,9 +10,9 @@ export class Nature {
   @Column("varchar", { name: "name", length: 255 })
   name: string;
 
-  @OneToMany(() => NatureEffet, (natureEffet) => natureEffet.uuidNature2)
+  @OneToMany(() => NatureEffet, (natureEffet) => natureEffet.uuidNatureDeux)
   natureEffets: NatureEffet[];
 
-  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidNature2)
+  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidNatureDeux)
   pokemon: Pokemon[];
 }

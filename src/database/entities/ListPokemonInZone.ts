@@ -27,9 +27,9 @@ export class ListPokemonInZone {
     (defaultPokemon) => defaultPokemon.listPokemonInZones,
     { onDelete: "CASCADE", onUpdate: "CASCADE" }
   )
-  @JoinColumn([{ name: "idPokemon", referencedColumnName: "id" }])
-  idPokemon2: DefaultPokemon;
+  @JoinColumn([{ name: "idPokemonDeux", referencedColumnName: "id" }])
+  idPokemonDeux: DefaultPokemon;
 
-  @OneToMany(() => Lieux, (lieux) => lieux.uuidListPokemonInzone2)
+  @OneToMany(() => Lieux, (lieux) => lieux.uuidListPokemonInzoneDeux)
   lieuxes: Lieux[];
 }

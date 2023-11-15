@@ -14,12 +14,12 @@ export class Item {
   @Column("varchar", { name: "name", length: 255 })
   name: string;
 
-  @OneToMany(() => ListItemInZone, (listItemInZone) => listItemInZone.uuidItem2)
+  @OneToMany(() => ListItemInZone, (listItemInZone) => listItemInZone.uuidItemDeux)
   listItemInZones: ListItemInZone[];
 
-  @OneToMany(() => ListItemDrop, (listItemDrop) => listItemDrop.uuidItem2)
+  @OneToMany(() => ListItemDrop, (listItemDrop) => listItemDrop.uuidItemDeux)
   listItemDrops: ListItemDrop[];
 
-  @OneToMany(() => ListReward, (listReward) => listReward.uuidItem2)
+  @OneToMany(() => ListReward, (listReward) => listReward.uuidItemDeux)
   listRewards: ListReward[];
 }
