@@ -11,7 +11,7 @@
       "outDir": "./build",
       "rootDirs": ["./src"],
       "resolveJsonModule": true,
-      "sourceMap": true
+      "sourceMap": true,
    },
    "include": ["src/**/*.ts", "swaggerOptions.d.ts"],
    "exclude": ["node_modules"]

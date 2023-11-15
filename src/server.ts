@@ -3,7 +3,7 @@ import express, {Handler, Request, Response, Router} from "express";
 //!import swaggerUi from 'swagger-ui-express';
 //!import options from '../swaggerOption';
 import {CheckController} from "./controllers/CheckController";
-import {PokemonDefaultController} from "./controllers/pokemon/PokemonDefaultController";
+import {DefaultPokemonController} from "./controllers/pokemon/DefaultPokemonController";
 import {PokemonSauvageController} from "./controllers/pokemon/PokemonSauvageController";
 import "reflect-metadata";
 import "dotenv/config";
@@ -25,6 +25,7 @@ export class Server {
     }
 
     public configuration() {
+        this.app.set('port', process.env.PORT || 3000);
         this.app.use(cors());
         this.app.use(helmet());
         this.app.use(bodyParser.json());
@@ -34,13 +35,13 @@ export class Server {
         await dataSource.initialize();
 
         const checkController = new CheckController();
-        const pokemonDefaultController = new PokemonDefaultController();
+        const pokedexController = new DefaultPokemonController();
         const pokemonSauvageController = new PokemonSauvageController();
 
         //on ajoute les routes des controllers
         const expressRouter = Router();
         expressRouter.use('/check', checkController.router);
-        expressRouter.use('/pokemon', pokemonDefaultController.router);
+        expressRouter.use('/pokedex', pokedexController.router);
         expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
         this.app.use('/', expressRouter);
     }
