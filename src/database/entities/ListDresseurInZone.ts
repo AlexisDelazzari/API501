@@ -23,9 +23,9 @@ export class ListDresseurInZone {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidDresseur", referencedColumnName: "uuid" }])
-  uuidDresseur2: Dresseur;
+  @JoinColumn([{ name: "uuidDresseurDeux", referencedColumnName: "uuid" }])
+  uuidDresseurDeux: Dresseur;
 
-  @OneToMany(() => Lieux, (lieux) => lieux.uuidListDresseurInZone2)
+  @OneToMany(() => Lieux, (lieux) => lieux.uuidListDresseurInZoneDeux)
   lieuxes: Lieux[];
 }

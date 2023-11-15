@@ -14,6 +14,6 @@ export class ListReward {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidItem", referencedColumnName: "uuid" }])
-  uuidItem2: Item;
+  @JoinColumn([{ name: "uuidItemDeux", referencedColumnName: "uuid" }])
+  uuidItemDeux: Item;
 }

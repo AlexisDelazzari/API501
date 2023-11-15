@@ -64,43 +64,43 @@ export class Pokemon {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "idDefaultPokemon", referencedColumnName: "id" }])
-  idDefaultPokemon2: DefaultPokemon;
+  @JoinColumn([{ name: "idDefaultPokemonDeux", referencedColumnName: "id" }])
+  idDefaultPokemonDeux: DefaultPokemon;
 
   @ManyToOne(() => TalentEffet, (talentEffet) => talentEffet.pokemon, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidTalent", referencedColumnName: "uuid" }])
-  uuidTalent2: TalentEffet;
+  @JoinColumn([{ name: "uuidTalentDeux", referencedColumnName: "uuid" }])
+  uuidTalentDeux: TalentEffet;
 
   @ManyToOne(() => ListAttaque, (listAttaque) => listAttaque.pokemon, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   @JoinColumn([
-    { name: "uuidListAttaque", referencedColumnName: "uuidAttaque" },
+    { name: "uuidListAttaqueDeux", referencedColumnName: "uuidAttaque" },
   ])
-  uuidListAttaque2: ListAttaque;
+  uuidListAttaqueDeux: ListAttaque;
 
   @ManyToOne(() => Status, (status) => status.pokemon, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidStatus", referencedColumnName: "uuid" }])
-  uuidStatus2: Status;
+  @JoinColumn([{ name: "uuidStatusDeux", referencedColumnName: "uuid" }])
+  uuidStatusDeux: Status;
 
   @ManyToOne(() => Hero, (hero) => hero.pokemon, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidProprietaire", referencedColumnName: "uuid" }])
-  uuidProprietaire2: Hero;
+  @JoinColumn([{ name: "uuidProprietaireDeux", referencedColumnName: "uuid" }])
+  uuidProprietaireDeux: Hero;
 
   @ManyToOne(() => Nature, (nature) => nature.pokemon, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidNature", referencedColumnName: "uuid" }])
-  uuidNature2: Nature;
+  @JoinColumn([{ name: "uuidNatureDeux", referencedColumnName: "uuid" }])
+  uuidNatureDeux: Nature;
 }

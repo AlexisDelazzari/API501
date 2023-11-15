@@ -13,9 +13,9 @@ export class Status {
   @Column("varchar", { name: "description", length: 255 })
   description: string;
 
-  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidStatus2)
+  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidStatusDeux)
   pokemon: Pokemon[];
 
-  @OneToMany(() => StatusEffet, (statusEffet) => statusEffet.uuidStatus2)
+  @OneToMany(() => StatusEffet, (statusEffet) => statusEffet.uuidStatusDeux)
   statusEffets: StatusEffet[];
 }

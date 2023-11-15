@@ -44,7 +44,7 @@ export class Dresseur {
 
   @OneToMany(
     () => ListDresseurInZone,
-    (listDresseurInZone) => listDresseurInZone.uuidDresseur2
+    (listDresseurInZone) => listDresseurInZone.uuidDresseurDeux
   )
   listDresseurInZones: ListDresseurInZone[];
 
@@ -52,12 +52,12 @@ export class Dresseur {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidSac", referencedColumnName: "uuidSac" }])
-  uuidSac2: Sac;
+  @JoinColumn([{ name: "uuidSacDeux", referencedColumnName: "uuidSac" }])
+  uuidSacDeux: Sac;
 
-  @OneToMany(() => Hero, (hero) => hero.uuidDresseur2)
+  @OneToMany(() => Hero, (hero) => hero.uuidDresseurDeux)
   heroes: Hero[];
 
-  @OneToMany(() => ListDresseur, (listDresseur) => listDresseur.uuidDresseur2)
+  @OneToMany(() => ListDresseur, (listDresseur) => listDresseur.uuidDresseurDeux)
   listDresseurs: ListDresseur[];
 }

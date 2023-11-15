@@ -20,6 +20,6 @@ export class NatureEffet {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidNature", referencedColumnName: "uuid" }])
-  uuidNature2: Nature;
+  @JoinColumn([{ name: "uuidNatureDeux", referencedColumnName: "uuid" }])
+  uuidNatureDeux: Nature;
 }

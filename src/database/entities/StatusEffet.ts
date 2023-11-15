@@ -24,6 +24,6 @@ export class StatusEffet {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "uuidStatus", referencedColumnName: "uuid" }])
-  uuidStatus2: Status;
+  @JoinColumn([{ name: "uuidStatusDeux", referencedColumnName: "uuid" }])
+  uuidStatusDeux: Status;
 }

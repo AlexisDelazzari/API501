@@ -17,6 +17,7 @@ export class DefaultPokemonController {
 
     private async getAllPokedexHandler(req: Request, res: Response): Promise<void> {
         try {
+            console.log("je suis la")
             const allPokemon = await DefaultPokemonRepository.getAllPokemon();
             let goodPokemon = allPokemon.map(({id, nom}) => ({id, nom}))
             res.status(HttpCode.OK).json(goodPokemon);

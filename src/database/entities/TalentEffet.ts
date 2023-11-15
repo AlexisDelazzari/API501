@@ -25,6 +25,6 @@ export class TalentEffet {
   )
   defaultPokemon2: DefaultPokemon[];
 
-  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidTalent2)
+  @OneToMany(() => Pokemon, (pokemon) => pokemon.uuidTalentDeux)
   pokemon: Pokemon[];
 }

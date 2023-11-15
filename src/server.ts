@@ -11,6 +11,7 @@ import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import {dataSource} from "./config/ormconfig";
+import {DresseurController} from "./controllers/Dresseur/DresseurController";
 
 class Server {
 
@@ -35,12 +36,14 @@ class Server {
         const checkController = new CheckController();
         const pokedexController = new DefaultPokemonController();
         const pokemonSauvageController = new PokemonSauvageController();
+        const dresseurController = new DresseurController();
 
         //on ajoute les routes des controllers
         const expressRouter = Router();
         expressRouter.use('/check', checkController.router);
         expressRouter.use('/pokedex', pokedexController.router);
         expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
+        expressRouter.use('/dresseur', dresseurController.router);
         this.app.use('/api-pokemon', expressRouter);
     }
 
