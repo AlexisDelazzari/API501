@@ -32,4 +32,4 @@ jobs:
             cd /var/www/apiPokemon/API501
             git pull origin release
             npm install
-            pm2 start "npm run dev" --exp-backoff-restart-delay=100
+            npm run dev
