@@ -1,6 +1,6 @@
 {
   "git": {
-    "requireBranch": "structurationApi",
+    "requireBranch": "master",
     "commitMessage": "chore: release v${version}"
   },
   "hooks": {
