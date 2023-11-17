@@ -32,4 +32,3 @@ jobs:
             cd /var/www/apiPokemon/API501
             git pull origin release
             npm install
-            npm run dev
