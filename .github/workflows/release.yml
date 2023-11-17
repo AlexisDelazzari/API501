@@ -1,14 +1,35 @@
-name: Release to GitHub Pages
-on: workflow_dispatch
-jobs:
+name: Deploy to Server
+
+on:
   release:
-    runs-on: ubuntu-20.04
+    types:
+      - released
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout source code
+      - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm ci
-      - name: End Message
-        run: echo "End Message"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /var/www/apiPokemon/API501
+            git pull origin release
+            npm install
+            pm2 start "npm run dev" --exp-backoff-restart-delay=100
