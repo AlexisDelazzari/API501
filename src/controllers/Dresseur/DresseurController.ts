@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import HttpCode from '../../config/http-code';
-import {DresseurRepository} from "../../database/repository/Dresseur";
+import {DresseurRepository} from "../../database/repository/Dresseur.repository";
 export class DresseurController {
     public router: Router;
 
