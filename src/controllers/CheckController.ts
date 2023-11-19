@@ -1,5 +1,9 @@
 import { Request, Response, Router } from 'express';
 import HttpCode from '../config/http-code';
+import {DresseurEntity} from "../database/entities/Dresseur.entity";
+import {SacEntity} from "../database/entities/Sac.entity";
+import {SacRepository} from "../database/repository/Sac.repository";
+import {DresseurRepository} from "../database/repository/Dresseur.repository";
 export class CheckController {
     public router: Router;
 
@@ -16,6 +20,22 @@ export class CheckController {
 
     async getCheck(req: Request, res: Response) {
         try {
+            let dresseur: DresseurEntity = new DresseurEntity();
+            let sac: SacEntity = new SacEntity();
+
+            await SacRepository.save(sac);
+
+            dresseur.positionX = 1;
+            dresseur.positionY = 2;
+            dresseur.orientation = "N";
+            dresseur.name = "test";
+            dresseur.dialogue = "test";
+            dresseur.rewardMoney = 0;
+            dresseur.isHero = false;
+            dresseur.sac = sac;
+            
+            await DresseurRepository.save(dresseur);
+
             return res.status(HttpCode.OK).json({message: "getCheck"});
         } catch (e) {
             return res.status(HttpCode.INTERNAL_ERROR).json({message: "getCheck"});
