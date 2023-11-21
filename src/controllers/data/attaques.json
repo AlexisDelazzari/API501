@@ -212,7 +212,7 @@
   {
     "uuid": 15,
     "uuidAttaqueEvol": 16,
-    "uuidEffet": 4,
+    "uuidEffet": 2,
     "uuidType": 2,
     "nom": "Crachaud",
     "niveau": 1,
@@ -227,7 +227,7 @@
   {
     "uuid": 16,
     "uuidAttaqueEvol": 17,
-    "uuidEffet": 4,
+    "uuidEffet": 2,
     "uuidType": 2,
     "nom": "Frappe Flamboyante",
     "niveau": 2,
@@ -242,7 +242,7 @@
   {
     "uuid": 17,
     "uuidAttaqueEvol": 18,
-    "uuidEffet": 4,
+    "uuidEffet": 2,
     "uuidType": 2,
     "nom": "Impacte Ardent",
     "niveau": 1,
@@ -266,7 +266,7 @@
     "uuidCategorie" : 1,
     "uuidCritique" : 1,
     "priorite" : 1,
-    "description" :"Le Pokémon génère une décharge volcanique d'une chaleur insoutenable. Cette attaque cause de lourd dégâts et peut potentiellement l'ennemi."
+    "description" :"Le Pokémon génère une décharge volcanique d'une chaleur insoutenable. Cette attaque cause de lourd dégâts et peut potentiellement l'ennemi.",
     "precision" : 100
   }
 ]

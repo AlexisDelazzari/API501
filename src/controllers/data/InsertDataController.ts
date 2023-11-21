@@ -10,14 +10,26 @@ import {StatusRepository} from "../../database/repository/Status.repository";
 import {EffetEntity} from "../../database/entities/Effet.entity";
 import {EffetRepository} from "../../database/repository/Effet.repository";
 import {AttaqueRepository} from "../../database/repository/Attaque.repository";
-import typesJson from './types.json';
 import {TypeEntity} from "../../database/entities/Type.entity";
-import {ListDresseurInZoneRepository} from "../../database/repository/ListDresseurInZone.repository";
 import {TypeRepository} from "../../database/repository/Type.repository";
 import {CategorieEntity} from "../../database/entities/Categorie.entity";
 import {CategorieRepository} from "../../database/repository/Categorie.repository";
 import {CritiqueEntity} from "../../database/entities/Critique.entity";
 import {CritiqueRepository} from "../../database/repository/Critique.repository";
+import typesJson from './types.json';
+import attquesJson from './attaques.json';
+import defaultPokemonJson from './defaultPokemon.json';
+import talentEffetsJson from './talentEffets.json';
+import listAttaquesJson from './listAttaques.json'
+import {DefaultPokemonEntity} from "../../database/entities/DefaultPokemon.entity";
+import {TalentEffetRepository} from "../../database/repository/TalentEffet.repository";
+import {ListAttaqueRepository} from "../../database/repository/ListAttaque.repository";
+import {LieuxRepository} from "../../database/repository/Lieux.repository";
+import {ListItemDropRepository} from "../../database/repository/ListItemDrop.repository";
+import {DefaultPokemonRepository} from "../../database/repository/DefaultPokemon.repository";
+import {TalentEffetEntity} from "../../database/entities/TalentEffet.entity";
+import {ListAttaqueEntity} from "../../database/entities/ListAttaque.entity";
+import {ItemEntity} from "../../database/entities/Item.entity";
 
 export class InsertDataController {
     public router: Router;
@@ -29,8 +41,7 @@ export class InsertDataController {
 
     private initializeRoutes() {
         this.router.get('/', this.insertDataDresseur.bind(this));
-        this.router.get('/default', this.insertDataDefaultPokemon.bind(this));
-        this.router.get('/default/insertStatus', this.insertStatus.bind(this));
+        this.router.get('/default', this.insertData.bind(this));
     }
 
     async insertDataDresseur(req: Request, res: Response) {
@@ -57,11 +68,16 @@ export class InsertDataController {
         }
     }
 
-    async insertDataDefaultPokemon(req: Request, res: Response) {
-        let typesEntities = await this.insertType();
-        let categorieEntities = await this.insertCategories();
-        let critiquesEntities = await this.insertCritique();
-        
+    async insertData(req: Request, res: Response) {
+        await this.insertType();
+        await this.insertCategories();
+        await this.insertCritique();
+        await this.insertStatus();
+        await this.insertEffet();
+        await this.insertDataAttaque();
+        await this.insertTalentEffet();
+        await this.insertListAttaqueEffet()
+        await this.insertPokemonDefault();
         // try {
         //     const type1 = new TypeEntity();
         //     type1.name = "Plante";
@@ -105,26 +121,148 @@ export class InsertDataController {
         //
         //     // Insérer le DefaultPokemon dans la base de données
         //     await defaultPokemonRepository.save(defaultPokemon);
-        //     return res.status(HttpCode.OK).json({message: "getCheckById" + req.params.id});
+        return res.status(HttpCode.OK).json({message: "getCheckById" + req.params.id});
         // } catch (e) {
         //     return res.status(HttpCode.INTERNAL_ERROR).json({message: "getCheckById"});
         // }
     }
 
+    async insertPokemonDefault() {
+        let pokemons = defaultPokemonJson;
+        let pokemonEntities: DefaultPokemonEntity[] = [];
+        for (const pokemon of pokemons) {
+            const pokemonEntity = new DefaultPokemonEntity();
+            pokemonEntity.image = pokemon.image;
+            pokemonEntity.poids = pokemon.poids;
+            pokemonEntity.nom = pokemon.nom;
+            pokemonEntity.description = pokemon.description;
+            pokemonEntity.tauxCapture = pokemon.tauxCapture;
+            pokemonEntity.pv = pokemon.pv;
+            pokemonEntity.attaque = pokemon.attaque;
+            pokemonEntity.defense = pokemon.defense;
+            pokemonEntity.attaqueSpeciale = pokemon.attaqueSpeciale;
+            pokemonEntity.vitesse = pokemon.vitesse;
+            pokemonEntity.total = pokemon.total;
+            pokemonEntity.xp = pokemon.xp;
+            pokemonEntity.niveauEvolution = pokemon.niveauEvolution;
+            pokemonEntity.defenseSpeciale = pokemon.defenseSpeciale;
+            pokemonEntity.taille = pokemon.taille;
 
-    async insertDataAttaque() {
-        let effetsEntities = this.insertEffet();
-        let attaques = [[]];
-        const attaquesEntities: AttaqueEntity[] = [];
-        for (let i = 0; i < attaques.length; i++) {
+            // Utilisation des clés du JSON pour les associations
+            pokemonEntity.type1 = await TypeRepository.findOneBy({uuid: pokemon.uuidType1});
+            pokemonEntity.type2 = (pokemon.uuidType2 === null) ? null : await TypeRepository.findOneBy({uuid: pokemon.uuidType2});
+            pokemonEntity.talent1 = await TalentEffetRepository.findOneBy({uuid: pokemon.uuidTalent1});
+            pokemonEntity.talent2 = (pokemon.uuidTalent2 === null) ? null : await TalentEffetRepository.findOneBy({uuid: pokemon.uuidTalent2});
+            pokemonEntity.listAttaque = await ListAttaqueRepository.findOneBy({uuidList: pokemon.uuidListDefaultAttaque});
+            pokemonEntity.lieux = (pokemon.uuidLieux === null) ? null : await LieuxRepository.findOneBy({uuid: pokemon.uuidLieux});
+            pokemonEntity.listItemDrop = await ListItemDropRepository.findOneBy({uuidList: pokemon.uuidlistLoot});
+            pokemonEntity.pokemonEvolution = await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
 
+            pokemonEntities.push(pokemonEntity);
         }
 
-        attaquesEntities.forEach((entity) => {
-            AttaqueRepository.save(entity);
-        });
+        for (const element of pokemonEntities) {
+            await DefaultPokemonRepository.save(element);
+        }
+    }
 
-        return attaquesEntities;
+
+
+    async insertListItemDrops() {
+        let listItemDrops = listItemDropsJson;
+        let listItemDropsEntities: ListAttaqueEntity[] = [];
+
+        for (const listAttaque of listItemDrops) {
+            const listItemDropsEntity = new ListAttaqueEntity();
+            listItemDropsEntity.attaque = await AttaqueRepository.findOneBy({uuid : listAttaque.uuidAttaque});
+            listItemDropsEntity.Niveau = listAttaque.niveau
+            listItemDropsEntity.uuidList = listAttaque.uuidList
+
+            listItemDropsEntities.push(listItemDropsEntity);
+        }
+        for (const element of listItemDropsEntities) {
+            await ListAttaqueRepository.save(element);
+        }
+
+    }
+
+    async insertItemsEffet() {
+        let items = itemsJson;
+        let itemsEntities: ItemEntity[] = [];
+
+        for (const item of items) {
+            const itemsEntity = new ItemEntity();
+            itemsEntity.name = items.
+            itemsEntity.canBeFound
+
+            itemsEntities.push(itemsEntity);
+        }
+        for (const element of itemsEntities) {
+            await ItemsRepository.save(element);
+        }
+
+    }
+    
+    
+
+    async insertListAttaqueEffet() {
+        let listAttaques = listAttaquesJson;
+        let listAttaquesEntities: ListAttaqueEntity[] = [];
+
+        for (const listAttaque of listAttaques) {
+            const listAttaquesEntity = new ListAttaqueEntity();
+            listAttaquesEntity.attaque = await AttaqueRepository.findOneBy({uuid : listAttaque.uuidAttaque});
+            listAttaquesEntity.Niveau = listAttaque.niveau
+            listAttaquesEntity.uuidList = listAttaque.uuidList
+            
+            listAttaquesEntities.push(listAttaquesEntity);
+        }
+        for (const element of listAttaquesEntities) {
+            await ListAttaqueRepository.save(element);
+        }
+
+    }
+    async insertTalentEffet() {
+        let listAttaques = listAttaquesJson;
+        let listAttaquesEntities: TalentEffetEntity[] = [];
+
+        for (const talentEffet of listAttaques) {
+            const listAttaquesEntity = new TalentEffetEntity();
+            listAttaquesEntity.nom = talentEffet.nom;
+            listAttaquesEntity.description = talentEffet.description;
+
+            listAttaquesEntities.push(listAttaquesEntity);
+        }
+        for (const element of listAttaquesEntities) {
+            await AttaqueRepository.save(element);
+        }
+        
+    }
+
+    async insertDataAttaque() {
+        let attaques = attquesJson;
+        attaques = attaques.reverse();
+        let attaquesEntities: AttaqueEntity[] = [];
+        for (const attaque of attaques) {
+            const attaqueEntity = new AttaqueEntity();
+            attaqueEntity.uuid = attaque.uuid;
+            attaqueEntity.categorie = await CategorieRepository.findOneBy({id: attaque.uuidCategorie});
+            attaqueEntity.critique = await CritiqueRepository.findOneBy({id: attaque.uuidCritique});
+            attaqueEntity.effet = await EffetRepository.findOneBy({uuid: attaque.uuidEffet});
+            attaqueEntity.attaqueEvol = (attaque.uuidAttaqueEvol === null) ? null : await AttaqueRepository.findOneBy({uuid: attaque.uuid});
+            attaqueEntity.niveau = attaque.niveau;
+            attaqueEntity.pp = attaque.pp;
+            attaqueEntity.priorite = attaque.priorite;
+            attaqueEntity.nom = attaque.nom;
+            attaqueEntity.description = attaque.description;
+            attaqueEntity.puissance = attaque.puissance;
+            attaqueEntity.precision = attaque.precision;
+            attaquesEntities.push(attaqueEntity);
+        }
+        attaquesEntities = attaquesEntities.reverse();
+        for (const element of attaquesEntities) {
+            await AttaqueRepository.save(element);
+        }
     }
 
     async insertType() {
@@ -134,14 +272,12 @@ export class InsertDataController {
             const typeEntity = new TypeEntity();
             typeEntity.uuid = type.id;
             typeEntity.name = type.nom;
-
             typeEntities.push(typeEntity);
         }
 
         typeEntities.forEach(entity => {
             TypeRepository.save(entity);
         });
-        return typeEntities;
 
     }
 
@@ -160,8 +296,7 @@ export class InsertDataController {
         categoriesEntities.forEach(entity => {
             CategorieRepository.save(entity);
         });
-
-        return categoriesEntities;
+        
     }
 
     async insertCritique() {
@@ -183,26 +318,25 @@ export class InsertDataController {
         critiquesEntities.forEach(entity => {
             CritiqueRepository.save(entity);
         });
-
-        return critiquesEntities;
+        
     }
 
 
     async insertEffet() {
-        let statusEntities = await this.insertStatus();
         let effets = [["Recul", "2"], ["Poison", "3"], ['Brulure', "4"]];
         const effetsEntities: EffetEntity[] = [];
-        for (let i = 0; i < effets.length; i++) {
+        for (const element of effets) {
             const effetsEntity: EffetEntity = new EffetEntity();
-            effetsEntity.name = effets[i][0];
-            effetsEntity.status = statusEntities[i];
+            effetsEntity.name = element[0];
+            effetsEntity.status = await StatusRepository.findOneBy({uuid: Number(element[0])});
+
+            effetsEntities.push(effetsEntity);
         }
 
         effetsEntities.forEach((entity) => {
             EffetRepository.save(entity);
         });
-
-        return effetsEntities;
+        
     }
 
     async insertStatus() {
@@ -217,6 +351,5 @@ export class InsertDataController {
         statusEntities.forEach((entity) => {
             StatusRepository.save(entity);
         });
-        return statusEntities;
     }
 }
