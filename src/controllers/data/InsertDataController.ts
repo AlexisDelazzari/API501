@@ -20,7 +20,9 @@ import typesJson from './types.json';
 import attquesJson from './attaques.json';
 import defaultPokemonJson from './defaultPokemon.json';
 import talentEffetsJson from './talentEffets.json';
-import listAttaquesJson from './listAttaques.json'
+import listAttaquesJson from './listAttaques.json';
+import itemsJson from './items.json';
+import listItemsDropJson from './listItemDrop.json';
 import {DefaultPokemonEntity} from "../../database/entities/DefaultPokemon.entity";
 import {TalentEffetRepository} from "../../database/repository/TalentEffet.repository";
 import {ListAttaqueRepository} from "../../database/repository/ListAttaque.repository";
@@ -30,6 +32,8 @@ import {DefaultPokemonRepository} from "../../database/repository/DefaultPokemon
 import {TalentEffetEntity} from "../../database/entities/TalentEffet.entity";
 import {ListAttaqueEntity} from "../../database/entities/ListAttaque.entity";
 import {ItemEntity} from "../../database/entities/Item.entity";
+import {ItemRepository} from "../../database/repository/Item.repository";
+import {ListItemDropEntity} from "../../database/entities/ListItemDrop.entity";
 
 export class InsertDataController {
     public router: Router;
@@ -76,8 +80,10 @@ export class InsertDataController {
         await this.insertEffet();
         await this.insertDataAttaque();
         await this.insertTalentEffet();
-        await this.insertListAttaqueEffet()
+        await this.insertListAttaqueEffet();
         await this.insertPokemonDefault();
+        await this.insertItems();
+        await this.insertListItemDrops();
         // try {
         //     const type1 = new TypeEntity();
         //     type1.name = "Plante";
@@ -156,8 +162,8 @@ export class InsertDataController {
             pokemonEntity.listAttaque = await ListAttaqueRepository.findOneBy({uuidList: pokemon.uuidListDefaultAttaque});
             pokemonEntity.lieux = (pokemon.uuidLieux === null) ? null : await LieuxRepository.findOneBy({uuid: pokemon.uuidLieux});
             pokemonEntity.listItemDrop = await ListItemDropRepository.findOneBy({uuidList: pokemon.uuidlistLoot});
-            pokemonEntity.pokemonEvolution = await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
-
+            pokemonEntity.pokemonEvolution =  await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
+//TODO FAIRE EN SORTE QUE POKEMONEVOLUTION PUISSE ETRE NULLE ET VERIFIE LES INSERTION DE POKEMON
             pokemonEntities.push(pokemonEntity);
         }
 
@@ -167,43 +173,42 @@ export class InsertDataController {
     }
 
 
-
     async insertListItemDrops() {
-        let listItemDrops = listItemDropsJson;
-        let listItemDropsEntities: ListAttaqueEntity[] = [];
+        let listItemDrops = listItemsDropJson;
+        let listItemDropsEntities: ListItemDropEntity[] = [];
 
-        for (const listAttaque of listItemDrops) {
-            const listItemDropsEntity = new ListAttaqueEntity();
-            listItemDropsEntity.attaque = await AttaqueRepository.findOneBy({uuid : listAttaque.uuidAttaque});
-            listItemDropsEntity.Niveau = listAttaque.niveau
-            listItemDropsEntity.uuidList = listAttaque.uuidList
+        for (const listItemDrop of listItemDrops) {
+            const listItemDropsEntity = new ListItemDropEntity();
+            listItemDropsEntity.item = await ItemRepository.findOneBy({uuid: listItemDrop.uuidItem});
+            listItemDropsEntity.max = listItemDrop.max;
+            listItemDropsEntity.min = listItemDrop.min;
+            listItemDropsEntity.taux = listItemDrop.taux;
 
             listItemDropsEntities.push(listItemDropsEntity);
         }
         for (const element of listItemDropsEntities) {
-            await ListAttaqueRepository.save(element);
+            await ListItemDropRepository.save(element);
         }
 
     }
 
-    async insertItemsEffet() {
+    async insertItems() {
         let items = itemsJson;
         let itemsEntities: ItemEntity[] = [];
 
         for (const item of items) {
             const itemsEntity = new ItemEntity();
-            itemsEntity.name = items.
-            itemsEntity.canBeFound
+            itemsEntity.name = item.name;
+            itemsEntity.canBeFound = item.canBeFound;
 
             itemsEntities.push(itemsEntity);
         }
         for (const element of itemsEntities) {
-            await ItemsRepository.save(element);
+            await ItemRepository.save(element);
         }
 
     }
-    
-    
+
 
     async insertListAttaqueEffet() {
         let listAttaques = listAttaquesJson;
@@ -211,10 +216,10 @@ export class InsertDataController {
 
         for (const listAttaque of listAttaques) {
             const listAttaquesEntity = new ListAttaqueEntity();
-            listAttaquesEntity.attaque = await AttaqueRepository.findOneBy({uuid : listAttaque.uuidAttaque});
-            listAttaquesEntity.Niveau = listAttaque.niveau
-            listAttaquesEntity.uuidList = listAttaque.uuidList
-            
+            listAttaquesEntity.attaque = await AttaqueRepository.findOneBy({uuid: listAttaque.uuidAttaque});
+            listAttaquesEntity.Niveau = listAttaque.niveau;
+            listAttaquesEntity.uuidList = listAttaque.uuidList;
+
             listAttaquesEntities.push(listAttaquesEntity);
         }
         for (const element of listAttaquesEntities) {
@@ -222,21 +227,22 @@ export class InsertDataController {
         }
 
     }
+
     async insertTalentEffet() {
-        let listAttaques = listAttaquesJson;
-        let listAttaquesEntities: TalentEffetEntity[] = [];
+        let talentEffets = talentEffetsJson;
+        let talentEffetEntities: TalentEffetEntity[] = [];
 
-        for (const talentEffet of listAttaques) {
-            const listAttaquesEntity = new TalentEffetEntity();
-            listAttaquesEntity.nom = talentEffet.nom;
-            listAttaquesEntity.description = talentEffet.description;
+        for (const talentEffet of talentEffets) {
+            const talentEffetEntity = new TalentEffetEntity();
+            talentEffetEntity.nom = talentEffet.nom;
+            talentEffetEntity.description = talentEffet.description;
 
-            listAttaquesEntities.push(listAttaquesEntity);
+            talentEffetEntities.push(talentEffetEntity);
         }
-        for (const element of listAttaquesEntities) {
-            await AttaqueRepository.save(element);
+        for (const element of talentEffetEntities) {
+            await TalentEffetRepository.save(element);
         }
-        
+
     }
 
     async insertDataAttaque() {
@@ -296,7 +302,7 @@ export class InsertDataController {
         categoriesEntities.forEach(entity => {
             CategorieRepository.save(entity);
         });
-        
+
     }
 
     async insertCritique() {
@@ -318,7 +324,7 @@ export class InsertDataController {
         critiquesEntities.forEach(entity => {
             CritiqueRepository.save(entity);
         });
-        
+
     }
 
 
@@ -336,7 +342,7 @@ export class InsertDataController {
         effetsEntities.forEach((entity) => {
             EffetRepository.save(entity);
         });
-        
+
     }
 
     async insertStatus() {
