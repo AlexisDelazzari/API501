@@ -163,7 +163,7 @@ export class InsertDataController {
             pokemonEntity.lieux = (pokemon.uuidLieux === null) ? null : await LieuxRepository.findOneBy({uuid: pokemon.uuidLieux});
             pokemonEntity.listItemDrop = await ListItemDropRepository.findOneBy({uuidList: pokemon.uuidlistLoot});
             pokemonEntity.pokemonEvolution =  await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
-//TODO FAIRE EN SORTE QUE POKEMONEVOLUTION PUISSE ETRE NULLE ET VERIFIE LES INSERTION DE POKEMON
+            //TODO FAIRE EN SORTE QUE POKEMONEVOLUTION PUISSE ETRE NULLE ET VERIFIE LES INSERTION DE POKEMON
             pokemonEntities.push(pokemonEntity);
         }
 
