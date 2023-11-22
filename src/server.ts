@@ -11,7 +11,7 @@ import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import {dataSource} from "./config/ormconfig";
-import {DresseurController} from "./controllers/Dresseur/DresseurController";
+import {DresseurController} from "./controllers/dresseur/DresseurController";
 import * as http from "http";
 import {InsertDataController} from "./controllers/data/InsertDataController";
 
