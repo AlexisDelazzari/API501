@@ -15,6 +15,7 @@ export class ListAttaqueEntity {
     @Column({ type: 'int' })
     Niveau: number;
 
+    
     @ManyToOne(type => AttaqueEntity, attaque => attaque.uuid)
     @JoinColumn({ name: 'uuidAttaque', referencedColumnName: 'uuid' })
     attaque?: AttaqueEntity;

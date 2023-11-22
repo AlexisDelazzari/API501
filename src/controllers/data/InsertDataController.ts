@@ -46,6 +46,7 @@ export class InsertDataController {
     private initializeRoutes() {
         this.router.get('/', this.insertDataDresseur.bind(this));
         this.router.get('/default', this.insertData.bind(this));
+        this.router.get('/default/attack', this.insertListAttaqueEffet.bind(this));
     }
 
     async insertDataDresseur(req: Request, res: Response) {
@@ -81,9 +82,9 @@ export class InsertDataController {
         await this.insertDataAttaque();
         await this.insertTalentEffet();
         await this.insertListAttaqueEffet();
-        await this.insertPokemonDefault();
         await this.insertItems();
         await this.insertListItemDrops();
+        await this.insertPokemonDefault();
         // try {
         //     const type1 = new TypeEntity();
         //     type1.name = "Plante";
@@ -162,8 +163,7 @@ export class InsertDataController {
             pokemonEntity.listAttaque = await ListAttaqueRepository.findOneBy({uuidList: pokemon.uuidListDefaultAttaque});
             pokemonEntity.lieux = (pokemon.uuidLieux === null) ? null : await LieuxRepository.findOneBy({uuid: pokemon.uuidLieux});
             pokemonEntity.listItemDrop = await ListItemDropRepository.findOneBy({uuidList: pokemon.uuidlistLoot});
-            pokemonEntity.pokemonEvolution =  await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
-            //TODO FAIRE EN SORTE QUE POKEMONEVOLUTION PUISSE ETRE NULLE ET VERIFIE LES INSERTION DE POKEMON
+            pokemonEntity.pokemonEvolution = (pokemon.idPokemonEvolution === null) ? null :  await DefaultPokemonRepository.findOneBy({id: pokemon.idPokemonEvolution});
             pokemonEntities.push(pokemonEntity);
         }
 
@@ -334,7 +334,7 @@ export class InsertDataController {
         for (const element of effets) {
             const effetsEntity: EffetEntity = new EffetEntity();
             effetsEntity.name = element[0];
-            effetsEntity.status = await StatusRepository.findOneBy({uuid: Number(element[0])});
+            effetsEntity.status = await StatusRepository.findOneBy({uuid: Number(element[1])});
 
             effetsEntities.push(effetsEntity);
         }
