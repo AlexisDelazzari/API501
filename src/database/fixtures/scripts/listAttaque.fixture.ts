@@ -12,16 +12,19 @@ export default async function ListAttaqueFixture() {
     let listAttaqueEntity: ListAttaqueEntity[] = [];
 
     for (const attaque of listAttaque) {
-        const newlistAttaque = new ListAttaqueEntity();
-        newlistAttaque.uuidList = attaque.uuidList;
-        newlistAttaque.idAttaque = attaque.uuidAttaque;
-        newlistAttaque.Niveau = attaque.niveau;
-        newlistAttaque.attaque = await AttaqueRepository.findOneBy({uuid: attaque.uuidAttaque});
+        const newAttaque = await AttaqueRepository.findOneBy({uuid: attaque.uuidAttaque});
+        if (newAttaque) {
+            const newlistAttaque = new ListAttaqueEntity();
+            newlistAttaque.uuidList = attaque.uuidList;
+            newlistAttaque.idAttaque = attaque.uuidAttaque;
+            newlistAttaque.Niveau = attaque.niveau;
+            newlistAttaque.attaque = newAttaque;
+            listAttaqueEntity.push(newlistAttaque);
 
-        listAttaqueEntity.push(newlistAttaque);
-
-        await ListAttaqueRepository.save(newlistAttaque);
+            await ListAttaqueRepository.save(newlistAttaque);
+        }
     }
 }
 
 ListAttaqueFixture();
+
