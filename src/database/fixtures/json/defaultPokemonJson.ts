@@ -1,13 +1,13 @@
-[{
+const defaultPokemonJson = [{
   "id": 1,
   "uuidType1": 11,
   "uuidType2": null,
   "uuidTalent1": 1,
   "uuidTalent2": null,
   "uuidListDefaultAttaque": 1,
-  "uuidLieux": 0,
+  "uuidLieux": null,
   "uuidlistLoot": 1,
-  "idPokemonEvolution": 1,
+  "idPokemonEvolution": null,
   "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/1.png?alt=media&token=c84c15b8-c43f-4211-9ebe-53dcb065b794",
   "poids": "10.2 kg",
   "nom": "Tortipousspouss",
@@ -25,3 +25,5 @@
   "taille": "40 cm"
 }
 ]
+
+export default defaultPokemonJson

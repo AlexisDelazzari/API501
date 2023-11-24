@@ -15,6 +15,6 @@ const listAttaqueJson =
             "uuidAttaque": 11,
             "niveau": 6
         }
-    ]
+    ];
 
 export default listAttaqueJson;

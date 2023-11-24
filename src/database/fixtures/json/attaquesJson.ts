@@ -1,4 +1,4 @@
-[
+const attaquesJson = [
   {
     "uuid": 1,
     "uuidAttaqueEvol": 2,
@@ -47,7 +47,7 @@
   {
     "uuid": 4,
     "uuidAttaqueEvol": 5,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 4,
     "nom": "Bav'O",
     "niveau": 1,
@@ -62,7 +62,7 @@
   {
     "uuid": 5,
     "uuidAttaqueEvol": 6,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 4,
     "nom": "Bubulle",
     "niveau": 2,
@@ -77,7 +77,7 @@
   {
     "uuid": 6,
     "uuidAttaqueEvol": 7,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 4,
     "nom": "Jet'O",
     "niveau": 1,
@@ -92,7 +92,7 @@
   {
     "uuid": 7,
     "uuidAttaqueEvol": null,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 4,
     "nom": "Jet'O",
     "niveau": 1,
@@ -107,7 +107,7 @@
   {
     "uuid": 8,
     "uuidAttaqueEvol": 9,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 17,
     "nom": "Mordouille",
     "niveau": 1,
@@ -122,7 +122,7 @@
   {
     "uuid": 9,
     "uuidAttaqueEvol": 10,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 17,
     "nom": "Crokfor",
     "niveau": 2,
@@ -137,7 +137,7 @@
   {
     "uuid": 10,
     "uuidAttaqueEvol": null,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 17,
     "nom": "Dévorage",
     "niveau": 1,
@@ -152,7 +152,7 @@
   {
     "uuid": 11,
     "uuidAttaqueEvol": 12,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 11,
     "nom": "Calibourgeon",
     "niveau": 1,
@@ -167,7 +167,7 @@
   {
     "uuid": 12,
     "uuidAttaqueEvol": 13,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 11,
     "nom": "Lianes Furieuses",
     "niveau": 2,
@@ -182,7 +182,7 @@
   {
     "uuid": 13,
     "uuidAttaqueEvol": 14,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 8,
     "nom": "Vortex Chlorophyllien",
     "niveau": 1,
@@ -197,7 +197,7 @@
   {
     "uuid": 14,
     "uuidAttaqueEvol": null,
-    "uuidEffet": 0,
+    "uuidEffet": null,
     "uuidType": 8,
     "nom": "Éruption Botanique",
     "niveau": 1,
@@ -242,7 +242,7 @@
   {
     "uuid": 17,
     "uuidAttaqueEvol": 18,
-    "uuidEffet": 2,
+    "uuidEffet": 3,
     "uuidType": 2,
     "nom": "Impacte Ardent",
     "niveau": 1,
@@ -257,7 +257,7 @@
   {
     "uuid": 18,
     "uuidAttaqueEvol" : null,
-    "uuidEffet" : 4,
+    "uuidEffet" : 3,
     "uuidType" : 2,
     "nom": "Vulcanochoc",
     "niveau": 4,
@@ -270,3 +270,5 @@
     "precision" : 100
   }
 ]
+
+export default attaquesJson;

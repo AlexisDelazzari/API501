@@ -1,4 +1,4 @@
-[
+const listItemsDropsJson = [
   {
     "uuidList": 1,
     "uuidItem": 4,
@@ -14,3 +14,5 @@
     "max": 3
   }
 ]
+
+export default listItemsDropsJson

@@ -1,4 +1,4 @@
-[
+const talentEffetsJson = [
   {
     "uuid": 1,
     "nom": "Engrais",
@@ -15,3 +15,5 @@
     "description": "Augmente la puissance des capacités de type Feu du Pokémon quand il a perdu une certaine quantité de PV."
   }
 ]
+
+export default  talentEffetsJson
