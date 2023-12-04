@@ -13,7 +13,7 @@ import cors from "cors";
 import {dataSource} from "./config/ormconfig";
 import {DresseurController} from "./controllers/dresseur/DresseurController";
 import * as http from "http";
-import {InsertDataController} from "./database/fixtures/scripts/InsertDataController";
+import {InsertDataController} from "./controllers/InsertDataController";
 
 export class Server {
 
