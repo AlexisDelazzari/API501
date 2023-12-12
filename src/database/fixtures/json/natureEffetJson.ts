@@ -31,7 +31,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 6,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 3
             },
@@ -43,7 +43,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 8,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 4
             },
@@ -91,7 +91,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 16,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 8
             },
@@ -103,7 +103,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 18,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 9
             },
@@ -121,7 +121,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 21,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 11
             },
@@ -133,7 +133,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 23,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 12
             },
@@ -145,7 +145,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 25,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.0,
                 "UUID_NATURE": 13
             },
@@ -157,19 +157,19 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 27,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 14
             },
             {
                 "UUID_EFFET": 28,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 14
             },
             {
                 "UUID_EFFET": 29,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 15
             },
@@ -181,7 +181,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 31,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 16
             },
@@ -193,7 +193,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 33,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 17
             },
@@ -205,7 +205,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 35,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 18
             },
@@ -217,19 +217,19 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 37,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 19
             },
             {
                 "UUID_EFFET": 38,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 1.0,
                 "UUID_NATURE": 19
             },
             {
                 "UUID_EFFET": 39,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.1,
                 "UUID_NATURE": 20
             },
@@ -271,13 +271,13 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 46,
-                "STAT": "attaque_speciale",
+                "STAT": "attaqueSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 23
             },
             {
                 "UUID_EFFET": 47,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 1.0,
                 "UUID_NATURE": 24
             },
@@ -295,7 +295,7 @@ const natureJson = [
             },
             {
                 "UUID_EFFET": 50,
-                "STAT": "defense_speciale",
+                "STAT": "defenseSpeciale",
                 "MULTIPLICATEUR": 0.9,
                 "UUID_NATURE": 25
             }

@@ -10,6 +10,7 @@ export default async function insertNatures() {
     for (const nature of natures) {
         const natureEntity = new NatureEntity();
         natureEntity.name = nature.nom;
+        natureEntity.uuid = nature.effet
         naturesEntities.push(natureEntity);
     }
 

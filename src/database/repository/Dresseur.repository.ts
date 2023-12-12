@@ -7,7 +7,7 @@ export const DresseurRepository = dataSource.getRepository(DresseurEntity).exten
         return this.find();
     },
     
-    async getOneDresseur() : Promise<DresseurEntity[]> {
-        return this.find();
+    async getOneDresseur(id : number) : Promise<DresseurEntity[]> {
+        return this.findOneByOrFail({uuid : id});
     },
 })

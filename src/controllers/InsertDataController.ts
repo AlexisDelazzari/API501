@@ -19,6 +19,7 @@ import insertSac from "../database/fixtures/scripts/sac";
 import insertDresseur from "../database/fixtures/scripts/dresseur";
 import insertNatures from "../database/fixtures/scripts/nature";
 import insertNaturesEffet from "../database/fixtures/scripts/natureEffet";
+import insertPokemon from "../database/fixtures/scripts/pokemon";
 
 export class InsertDataController {
     public router: Router;
@@ -41,12 +42,13 @@ export class InsertDataController {
         await insertTalentEffet();
         await insertListAttaqueEffet();
         await insertItems();
+        await insertSac();
         await insertListItemDrops();
         await insertPokemonDefault();
-        await insertSac();
         await insertDresseur();
         await insertNatures();
         await insertNaturesEffet();
+        await insertPokemon();
 
         return res.status(HttpCode.OK).json({message: "getCheckById" + req.params.id});
     }
