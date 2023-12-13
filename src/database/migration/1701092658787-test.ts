@@ -1,15 +1,15 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class BddWorks1700387468080 implements MigrationInterface {
-    name = 'BddWorks1700387468080'
+export class Test1701092658787 implements MigrationInterface {
+    name = 'Test1701092658787'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE \`CRITIQUE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`PROBABILITÉ\` decimal(5,2) NULL, \`DESCRIPTION\` varchar(200) NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`CLIMAT\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, \`TIME\` int NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`STATUS\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`EFFET\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`UUID_STATUS\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`TYPE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`CATEGORIE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`INFO\` varchar(100) NOT NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`CRITIQUE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`PROBABILITÉ\` decimal(5,2) NULL, \`DESCRIPTION\` varchar(200) NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`ATTAQUE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NOM\` varchar(200) NOT NULL, \`NIVEAU\` int NOT NULL, \`PUISSANCE\` int NULL, \`PP\` int NULL, \`PRIORITE\` int NULL, \`DESCRIPTION\` varchar(255) NULL, \`PRECISION\` int NOT NULL, \`UUID_ATTAQUE_EVOL\` int NULL, \`UUID_EFFET\` int NULL, \`UUID_TYPE\` int NULL, \`UUID_CATEGORIE\` int NULL, \`UUID_CRITIQUE\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`SAC\` (\`UUID\` int NOT NULL AUTO_INCREMENT, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`DRESSEUR\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`POSITION_X\` int NOT NULL, \`POSITION_Y\` int NOT NULL, \`ORIENTATION\` varchar(50) NOT NULL, \`NAME\` varchar(255) NOT NULL, \`DIALOGUE\` text NOT NULL, \`REWARD_MONEY\` int NOT NULL, \`IS_HERO\` tinyint NOT NULL, \`UUID_SAC\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
@@ -18,7 +18,7 @@ export class BddWorks1700387468080 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`LIST_REWARD\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`UUID_ITEM\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`ARENE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`UUID_LIST_DRESSEUR\` int NULL, \`UUID_CHAMPION\` int NULL, \`UUID_LIST_REWARD\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`TALENT_EFFET\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NOM\` varchar(200) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`LIST_ATTAQUE\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`NIVEAU\` int NOT NULL, \`UUID_ATTAQUE\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`LIST_ATTAQUE\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`ID_ATTAQUE\` int NOT NULL, \`NIVEAU\` int NOT NULL, \`UUID_ATTAQUE\` int NULL, PRIMARY KEY (\`UUID_LIST\`, \`ID_ATTAQUE\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`NATURE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`POKEMON\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`LEVEL\` int NOT NULL, \`CURRENT_XP\` int NOT NULL, \`PV_ACTUEL\` int NOT NULL, \`SEXE\` varchar(50) NOT NULL, \`XP_NEXT_LEVEL\` int NOT NULL, \`UUID_DEFAULT_POKEMON\` int NULL, \`UUID_TALENT\` int NULL, \`UUID_LIST_ATTAQUE\` int NULL, \`UUID_STATUS\` int NULL, \`UUID_PROPRIETAIRE\` int NULL, \`UUID_NATURE\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`LIST_POKEMON_IN_ZONE\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`TAUX\` int NOT NULL, \`UUID_POKEMON\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
@@ -127,12 +127,12 @@ export class BddWorks1700387468080 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE \`DRESSEUR\``);
         await queryRunner.query(`DROP TABLE \`SAC\``);
         await queryRunner.query(`DROP TABLE \`ATTAQUE\``);
-        await queryRunner.query(`DROP TABLE \`CRITIQUE\``);
         await queryRunner.query(`DROP TABLE \`CATEGORIE\``);
         await queryRunner.query(`DROP TABLE \`TYPE\``);
         await queryRunner.query(`DROP TABLE \`EFFET\``);
         await queryRunner.query(`DROP TABLE \`STATUS\``);
         await queryRunner.query(`DROP TABLE \`CLIMAT\``);
+        await queryRunner.query(`DROP TABLE \`CRITIQUE\``);
     }
 
 }

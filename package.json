@@ -40,6 +40,7 @@
     "typeorm:sync": "npx typeorm-ts-node-commonjs schema:sync -d src/config/ormconfig.ts",
     "typeorm:drop": "npx typeorm-ts-node-commonjs schema:drop -d src/config/ormconfig.ts",
     "typeorm:run": "npx typeorm-ts-node-commonjs migration:run -d src/config/ormconfig.ts",
-    "release": "release-it"
+    "release": "release-it",
+    "update:listAttaque": "ts-node-dev src/database/fixtures/scripts/listAttaque.fixture.ts"
   }
 }
