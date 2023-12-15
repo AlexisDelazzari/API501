@@ -31,4 +31,4 @@ jobs:
           script: |
             cd /var/www/apiPokemon/API501
             git pull origin master
-            npm install
+            npm
