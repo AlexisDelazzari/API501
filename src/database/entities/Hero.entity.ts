@@ -12,7 +12,8 @@ export class HeroEntity {
     @PrimaryGeneratedColumn()
     uuid: number;
 
-    @Column({ type: 'int' })
+    //default value 0
+    @Column({ type: 'int', default: 0 })
     money: number;
 
     @Column({ type: 'int' })
@@ -27,7 +28,7 @@ export class HeroEntity {
     @Column({ type: 'int' })
     sexe: number;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int' , default: 0})
     hourPlay: number;
 
     @ManyToOne(() => DresseurEntity, dresseur => dresseur.uuid)
