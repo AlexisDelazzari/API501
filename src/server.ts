@@ -14,6 +14,7 @@ import {dataSource} from "./config/ormconfig";
 import {DresseurController} from "./controllers/dresseur/DresseurController";
 import * as http from "http";
 import {InsertDataController} from "./controllers/InsertDataController";
+import {AuthController} from "./controllers/auth/auth.controller";
 
 export class Server {
 
@@ -41,6 +42,8 @@ export class Server {
         const pokemonSauvageController = new PokemonSauvageController();
         const dresseurController = new DresseurController();
         const insertDataController = new InsertDataController()
+        const authController = new AuthController();
+
         //on ajoute les routes des controllers
         const expressRouter = Router();
         expressRouter.use('/check', checkController.router);
@@ -48,7 +51,8 @@ export class Server {
         expressRouter.use('/pokemon/sauvage', pokemonSauvageController.router);
         expressRouter.use('/dresseur', dresseurController.router);
         expressRouter.use('/insert', insertDataController.router);
-        this.app.use('/api-pokemon', expressRouter);
+        expressRouter.use('/auth', authController.router);
+        this.app.use('', expressRouter);
     }
 
     public start(port: string) {
