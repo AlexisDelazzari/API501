@@ -1,10 +1,9 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Test1702671481196 implements MigrationInterface {
-    name = 'Test1702671481196'
+export class Test1704670785603 implements MigrationInterface {
+    name = 'Test1704670785603'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE \`CATEGORIE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`INFO\` varchar(100) NOT NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`SAC\` (\`UUID\` int NOT NULL AUTO_INCREMENT, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`DRESSEUR\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`POSITION_X\` int NOT NULL, \`POSITION_Y\` int NOT NULL, \`ORIENTATION\` varchar(50) NOT NULL, \`NAME\` varchar(255) NOT NULL, \`DIALOGUE\` text NOT NULL, \`REWARD_MONEY\` int NOT NULL, \`IS_HERO\` tinyint NOT NULL, \`UUID_SAC\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`LIST_DRESSEUR\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`UUID_DRESSEUR\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
@@ -14,9 +13,9 @@ export class Test1702671481196 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`STATUS\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`EFFET\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`UUID_STATUS\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`TYPE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`CATEGORIE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`INFO\` varchar(100) NOT NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`CRITIQUE\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`PROBABILITÉ\` decimal(5,2) NULL, \`DESCRIPTION\` varchar(200) NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`ATTAQUE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NOM\` varchar(200) NOT NULL, \`NIVEAU\` int NOT NULL, \`PUISSANCE\` int NULL, \`PP\` int NULL, \`PRIORITE\` int NULL, \`DESCRIPTION\` varchar(255) NULL, \`PRECISION\` int NOT NULL, \`UUID_ATTAQUE_EVOL\` int NULL, \`UUID_EFFET\` int NULL, \`UUID_TYPE\` int NULL, \`UUID_CATEGORIE\` int NULL, \`UUID_CRITIQUE\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`CLIMAT\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, \`TIME\` int NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`TALENT_EFFET\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NOM\` varchar(200) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`LIST_ATTAQUE\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`ID_ATTAQUE\` int NOT NULL, \`NIVEAU\` int NOT NULL, \`UUID_ATTAQUE\` int NULL, PRIMARY KEY (\`UUID_LIST\`, \`ID_ATTAQUE\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`NATURE\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
@@ -26,7 +25,8 @@ export class Test1702671481196 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`LIST_DRESSEUR_IN_ZONE\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`UUID_DRESSEUR\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`LIEUX\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NOM\` varchar(255) NOT NULL, \`UUID_LIST_POKEMON_IN_ZONE\` int NULL, \`UUID_LIST_ITEM_IN_ZONE\` int NULL, \`UUID_LIST_DRESSEUR_IN_ZONE\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`LIST_ITEM_DROP\` (\`UUID_LIST\` int NOT NULL AUTO_INCREMENT, \`TAUX\` decimal(4,2) NOT NULL, \`MIN\` int NOT NULL, \`MAX\` int NOT NULL, \`UUID_ITEM\` int NULL, PRIMARY KEY (\`UUID_LIST\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`DEFAULT_POKEMON\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`IMAGE\` varchar(255) NOT NULL, \`POIDS\` varchar(11) NOT NULL, \`NOM\` varchar(255) NOT NULL, \`DESCRIPTION\` text NOT NULL, \`TAUX_CAPTURE\` int NOT NULL, \`PV\` int NOT NULL, \`ATTAQUE\` int NOT NULL, \`DEFENSE\` int NOT NULL, \`ATTAQUE_SPECIALE\` int NOT NULL, \`VITESSE\` int NOT NULL, \`TOTAL\` int NOT NULL, \`XP\` int NOT NULL, \`NIVEAU_EVOLUTION\` int NOT NULL, \`DEFENSE_SPECIALE\` int NOT NULL, \`TAILLE\` varchar(11) NOT NULL, \`UUID_TYPE1\` int NULL, \`UUID_TYPE2\` int NULL, \`UUID_TALENT1\` int NULL, \`UUID_TALENT2\` int NULL, \`UUID_LIST_ATTAQUE\` int NULL, \`UUID_LIEUX\` int NULL, \`UUID_LIST_ITEM_DROP\` int NULL, \`ID_POKEMON_EVOLUTION\` int NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`DEFAULT_POKEMON\` (\`ID\` int NOT NULL AUTO_INCREMENT, \`IMAGE\` varchar(255) NOT NULL, \`POIDS\` varchar(11) NOT NULL, \`NOM\` varchar(255) NOT NULL, \`DESCRIPTION\` text NOT NULL, \`TAUX_CAPTURE\` int NOT NULL, \`PV\` int NOT NULL, \`ATTAQUE\` int NOT NULL, \`DEFENSE\` int NOT NULL, \`ATTAQUE_SPECIALE\` int NOT NULL, \`VITESSE\` int NOT NULL, \`TOTAL\` int NOT NULL, \`XP\` int NULL, \`NIVEAU_EVOLUTION\` int NULL, \`DEFENSE_SPECIALE\` int NOT NULL, \`TAILLE\` varchar(11) NOT NULL, \`UUID_TYPE1\` int NULL, \`UUID_TYPE2\` int NULL, \`UUID_TALENT1\` int NULL, \`UUID_TALENT2\` int NULL, \`UUID_LIST_ATTAQUE\` int NULL, \`UUID_LIEUX\` int NULL, \`UUID_LIST_ITEM_DROP\` int NULL, \`ID_POKEMON_EVOLUTION\` int NULL, PRIMARY KEY (\`ID\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`CLIMAT\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`NAME\` varchar(255) NOT NULL, \`DESCRIPTION\` varchar(255) NOT NULL, \`TIME\` int NOT NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`HERO\` (\`UUID\` int NOT NULL AUTO_INCREMENT, \`MONEY\` int NOT NULL DEFAULT '0', \`AGE\` int NOT NULL, \`PASSWORD\` varchar(255) NOT NULL, \`ID_CONNEXION\` varchar(255) NOT NULL, \`SEXE\` int NOT NULL, \`HOUR_PLAY\` int NOT NULL DEFAULT '0', \`UUID_DRESSEUR\` int NULL, PRIMARY KEY (\`UUID\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`NATURE_EFFET\` (\`UUID_EFFET\` int NOT NULL AUTO_INCREMENT, \`STAT\` varchar(200) NOT NULL, \`MULTIPLICATEUR\` decimal(2,1) NOT NULL, \`UUID_NATURE\` int NULL, PRIMARY KEY (\`UUID_EFFET\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`STATUS_EFFET\` (\`UUID_EFFET\` int NOT NULL AUTO_INCREMENT, \`STAT\` int NOT NULL, \`UUID_STATUS\` int NULL, PRIMARY KEY (\`UUID_EFFET\`)) ENGINE=InnoDB`);
@@ -110,6 +110,7 @@ export class Test1702671481196 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE \`STATUS_EFFET\``);
         await queryRunner.query(`DROP TABLE \`NATURE_EFFET\``);
         await queryRunner.query(`DROP TABLE \`HERO\``);
+        await queryRunner.query(`DROP TABLE \`CLIMAT\``);
         await queryRunner.query(`DROP TABLE \`DEFAULT_POKEMON\``);
         await queryRunner.query(`DROP TABLE \`LIST_ITEM_DROP\``);
         await queryRunner.query(`DROP TABLE \`LIEUX\``);
@@ -120,9 +121,9 @@ export class Test1702671481196 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE \`NATURE\``);
         await queryRunner.query(`DROP TABLE \`LIST_ATTAQUE\``);
         await queryRunner.query(`DROP TABLE \`TALENT_EFFET\``);
-        await queryRunner.query(`DROP TABLE \`CLIMAT\``);
         await queryRunner.query(`DROP TABLE \`ATTAQUE\``);
         await queryRunner.query(`DROP TABLE \`CRITIQUE\``);
+        await queryRunner.query(`DROP TABLE \`CATEGORIE\``);
         await queryRunner.query(`DROP TABLE \`TYPE\``);
         await queryRunner.query(`DROP TABLE \`EFFET\``);
         await queryRunner.query(`DROP TABLE \`STATUS\``);
@@ -132,7 +133,6 @@ export class Test1702671481196 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE \`LIST_DRESSEUR\``);
         await queryRunner.query(`DROP TABLE \`DRESSEUR\``);
         await queryRunner.query(`DROP TABLE \`SAC\``);
-        await queryRunner.query(`DROP TABLE \`CATEGORIE\``);
     }
 
 }

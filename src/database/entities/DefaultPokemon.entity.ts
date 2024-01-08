@@ -49,11 +49,11 @@ export class DefaultPokemonEntity {
     @Column({ type: 'int' })
     total: number;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', nullable : true })
     xp: number;
 
-    @Column({ type: 'int' })
-    niveauEvolution: number;
+    @Column({ type: 'int', nullable : true })
+    niveauEvolution: number | null;
 
     @Column({ type: 'int' })
     defenseSpeciale: number;
