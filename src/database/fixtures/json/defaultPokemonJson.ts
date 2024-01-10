@@ -877,7 +877,7 @@ const defaultPokemonJson = [
     },
     {
         "id": 35,
-        "uuidType1": 14, // GLACE
+        "uuidType1": 8, // GLACE
         "uuidType2": 2,  // COMBAT
         "uuidTalent1": 30, // Annule Garde (No Guard)
         "uuidTalent2": 31, // Préscience (Forewarn)
@@ -903,7 +903,7 @@ const defaultPokemonJson = [
     },
     {
         "id": 36,
-        "uuidType1": 14, // ICE
+        "uuidType1": 8, // ICE
         "uuidType2": 2,  // FIGHTING
         "uuidTalent1": 30, // Annule Garde (No Guard)
         "uuidTalent2": 31, // Préscience (Forewarn)
@@ -929,7 +929,7 @@ const defaultPokemonJson = [
     },
     {
         "id": 37,
-        "uuidType1": 14, // ICE
+        "uuidType1": 8, // ICE
         "uuidType2": 2,  // FIGHTING
         "uuidTalent1": 30, // Annule Garde (No Guard)
         "uuidTalent2": 31, // Préscience (Forewarn)
@@ -1004,7 +1004,303 @@ const defaultPokemonJson = [
         "xp": 45,
         "niveauEvolution": null,
         "taille": "280 cm"
+    },
+    {
+        "id": 40,
+        "uuidType1":3,  // DRAGON
+        "uuidType2": 9,   // BUG
+        "uuidTalent1": 33, // SWARM
+        "uuidTalent2": 34, // TERAVOLT
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/79.png?alt=media",
+        "poids": "231.5 kg",
+        "nom": "Zekzor",
+        "description": "Ce Pokémon apparaît dans les légendes. Il n'est pas facilement perturbé par des sortes d'attaques ordinaires.",
+        "tauxCapture": 45,
+        "pv": 90,
+        "attaque": 90,
+        "defense": 136,
+        "attaqueSpeciale": 98,
+        "defenseSpeciale": 93,
+        "vitesse": 73,
+        "total": 596,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "240 cm"
+    },
+    {
+        "id": 41,
+        "uuidType1": 4, // WATER
+        "uuidType2": 2, // FIGHTING
+        "uuidTalent1": 6, // BLAZE
+        "uuidTalent2": 27, // THICKFAT
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/41.png?alt=media",
+        "poids": "40.3 kg",
+        "nom": "Azumaiken",
+        "description": "Il vit dans l'eau presque toute la journée. Tous les plusieurs années, ses vieilles plumes se consument et de nouvelles plumes souples repoussent à leur place.",
+        "tauxCapture": 45,
+        "pv": 93,
+        "attaque": 93,
+        "defense": 96,
+        "attaqueSpeciale": 70,
+        "defenseSpeciale": 76,
+        "vitesse": 70,
+        "total": 478,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "140 cm"
+    },
+    {
+        "id": 42,
+        "uuidType1": 7,  // feu
+        "uuidType2": 18,   // vol
+        "uuidTalent1": 17, // Pression
+        "uuidTalent2": 6, // Brasier
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/42.png?alt=media",
+        "poids": "134 kg",
+        "nom": "Blazgia",
+        "description": "Il apprend des arts martiaux qui utilisent des coups de poing et des coups de pied. En conséquence, il choisit de vivre hors de vue, profondément sous la mer.",
+        "tauxCapture": 45,
+        "pv": 88,
+        "attaque": 88,
+        "defense": 100,
+        "attaqueSpeciale": 103,
+        "defenseSpeciale": 98,
+        "vitesse": 100,
+        "total": 599,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "360 cm"
+    },
+    {
+        "id": 43,
+        "uuidType1": 17,  // Dark
+        "uuidType2": 5,   // Electric
+        "uuidTalent1": 17, // Pressure
+        "uuidTalent2": 26, // Levitate
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/43.png?alt=media",
+        "poids": "169 kg",
+        "nom": "Hydreikou",
+        "description": "The heads on their arms do not have brains. Its roars send shock waves shuddering through the air and ground as if lightning bolts were crashing down.",
+        "tauxCapture": 45,
+        "pv": 80,
+        "attaque": 91,
+        "defense": 91,
+        "attaqueSpeciale": 109,
+        "defenseSpeciale": 121,
+        "vitesse": 93,
+        "total": 585,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "190 cm"
+    },
+    {
+        "id": 44,
+        "uuidType1": 1,  // acier
+        "uuidType2": 3,   // dragon
+        "uuidTalent1": 36, // Tête de Roc
+        "uuidTalent2": 37, // Corps Sain
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/44.png?alt=media",
+        "poids": "68.7 kg",
+        "nom": "Belgon",
+        "description": "Lorsque les Belgon se rassemblent en essaim, ils se déplacent en parfaite unison comme s'ils ne faisaient qu'un seul Pokémon. Il lance des coups de tête avec son crâne dur comme fer.",
+        "tauxCapture": 45,
+        "pv": 43,
+        "attaque": 41,
+        "defense": 68,
+        "attaqueSpeciale": 50,
+        "defenseSpeciale": 36,
+        "vitesse": 66,
+        "total": 304,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "60 cm",
+    },
+    {
+        "id": 45,
+        "uuidType1": 1,  // acier
+        "uuidType2": 3,   // dragon
+        "uuidTalent1": 36, // Tête de Roc
+        "uuidTalent2": 37, // Corps Sain
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/45.png?alt=media",
+        "poids": "156.5 kg",
+        "nom": "Unknown",
+        "description": "Les griffes au bout de ses bras possèdent une puissance destructrice capable de déchirer des plaques de fer épaisses comme s'il s'agissait de soie. Il devient plus résistant en endurant la faim.",
+        "tauxCapture": 45,
+        "pv": 61,
+        "attaque": 88,
+        "defense": 100,
+        "attaqueSpeciale": 55,
+        "defenseSpeciale": 56,
+        "vitesse": 70,
+        "total": 425,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "120 cm"
+    },
+    {
+        "id": 46,  // Assuming the next ID in sequence
+        "uuidType1": 1,  // Steel
+        "uuidType2": 18,   // Flying
+        "uuidTalent1": 12, // Intimidate, assuming it matches the ID from your list
+        "uuidTalent2": 37, // Clear Body, using the ID from your provided list
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/46.png?alt=media",
+        "poids": "326.3 kg",
+        "nom": "Metamence",  // Name inferred from the description
+        "description": "Metamence has four brains that are joined by a complex neural network. When angered, it loses all thought and rampages out of control.",
+        "tauxCapture": 45,  // Assuming the same catch rate as previous examples
+        "pv": 85,
+        "attaque": 135,
+        "defense": 100,
+        "attaqueSpeciale": 96,
+        "defenseSpeciale": 100,
+        "vitesse": 86,
+        "total": 592,
+        "xp": 45,  // Assuming the same experience as previous examples
+        "niveauEvolution": null,
+        "taille": "160 cm"
+    },
+    {
+        "id": 47,
+        "uuidType1": 17,  // Ténèbres
+        "uuidType2": 7,   // Feu
+        "uuidTalent1": 17, // Pression
+        "uuidTalent2": 38, // Mauvais Rêve (j'utilise l'ID 23 en supposant que c'est le suivant disponible pour "Bad Dreams")
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/47.png?alt=media",
+        "poids": "124.3 kg",
+        "nom": "Darktei",
+        "description": "Il peut endormir les gens et leur faire faire des rêves. On pense qu'il est né lors de l'éruption d'un volcan.",
+        "tauxCapture": 45,
+        "pv": 85,
+        "attaque": 106,
+        "defense": 85,
+        "attaqueSpeciale": 120,
+        "defenseSpeciale": 100,
+        "vitesse": 108,
+        "total": 590,
+        "xp": 45,
+        "niveauEvolution": null,
+        "taille": "180 cm"
+    },
+    {
+        "id": 48,
+        "uuidType1": 4,  // Water
+        "uuidType2": 18,  // Flying
+        "uuidTalent1": 39, // Air Lock (assuming an ID from your list)
+        "uuidTalent2": 12, // Intimidate (assuming an ID from your list)
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/48.png?alt=media",
+        "poids": "220.8 kg",
+        "nom": "Gyaraquaza",
+        "description": "C'est un Pokémon extrêmement vicieux et violent. On dit qu'il descendrait au sol si Kyogre et Groudon venaient à combattre.",
+        "tauxCapture": 45,  // The catch rate is assumed to be the same as previous examples
+        "pv": 98,
+        "attaque": 141,
+        "defense": 90,
+        "attaqueSpeciale": 86,
+        "defenseSpeciale": 96,
+        "vitesse": 90,
+        "total": 601,
+        "xp": 45,  // The experience yield is assumed to be the same as previous examples
+        "niveauEvolution": null,
+        "taille": "680 cm"
+    },
+    {
+        "id": "49",
+        "uuidType1": 16,  // Ghost
+        "uuidType2": 13,  // Psychic
+        "uuidTalent1": 17, // Pressure
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/49.png?alt=media",
+        "poids": "436 kg",
+        "nom": "Giratwo",
+        "description": "On dit de ce Pokémon qu'il vit dans un monde à l'envers du nôtre. Cependant, même si le pouvoir scientifique des humains a créé son corps, ils n'ont pas réussi à lui donner un cœur chaleureux.",
+        "tauxCapture": 45,  // Assuming the catch rate is the same as previous examples
+        "pv": 100,
+        "attaque": 135,
+        "defense": 106,
+        "attaqueSpeciale": 110,
+        "defenseSpeciale": 118,
+        "vitesse": 116,
+        "total": 685,
+        "xp": 45,  // Assuming the experience yield is the same as previous examples
+        "niveauEvolution": null,
+        "taille": "330 cm"
+    },
+    {
+        "id": "50",
+        "uuidType1": 17,  // Dark
+        "uuidType2": 13,  // Psychic
+        "uuidTalent1": 17, // Pressure
+        "uuidListDefaultAttaque": null,
+        "uuidLieux": null,
+        "uuidlistLoot": null,
+        "idPokemonEvolution": null,
+        "image": "https://firebasestorage.googleapis.com/v0/b/pouet-d0eb3.appspot.com/o/50.png?alt=media",
+        "poids": "47.4 kg",
+        "nom": "Weaxys",
+        "description": "Ils vivent dans des régions froides, formant des groupes de quatre ou cinq pour chasser leurs proies avec une coordination impressionnante. Leur corps est configuré pour une agilité supérieure.",
+        "tauxCapture": 45,  // The catch rate is assumed to be the same as previous examples
+        "pv": 55,
+        "attaque": 63,
+        "defense": 140,
+        "attaqueSpeciale": 141,
+        "defenseSpeciale": 80,
+        "vitesse": 73,
+        "total": 552,
+        "xp": 45,  // The experience yield is assumed to be the same as previous examples
+        "niveauEvolution": null,
+        "taille": "140 cm"
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

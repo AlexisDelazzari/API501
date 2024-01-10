@@ -158,7 +158,46 @@ const talentEffetsJson = [
     "nom": "Fuite",
     "description": "Permet de fuir n'importe quel Pokémon sauvage."
   },
-  
+  {
+    "uuid": 33,
+    "nom": "SWARM",
+    "description": "Augmente la puissance des capacités de type Bug du Pokémon quand il a perdu une certainité quantité de PV."
+  },
+  {
+    "uuid": 34,
+    "nom": "TERAVOLT",
+    "description": "Les capacités du Pokémon ignorent les effets bénéfiques sur la Défense de la cible."
+  },
+  {
+    "uuid": 35,
+    "nom": "Isograisse",
+    "description": "Réduit les dégâts reçus des attaques de type Feu et Glace."
+  },
+  {
+    "uuid": 36,
+    "nom": "Tête de Roc",
+    "description": "Empêche le Pokémon de subir des dégâts de recul."
+  },
+  {
+    "uuid": 37,
+    "nom": "Corps Sain",
+    "description": "Protège le Pokémon contre les baisses de stats."
+  },
+  {
+    "uuid": 38,
+    "nom": "Mauvais Rêve",
+    "description": "Inflige des dégâts aux Pokémon adverses endormis à la fin de chaque tour."
+  },
+  {
+    "uuid": 39,
+    "nom": "Air Lock",
+    "description": "Neutralise les effets du climat pendant le combat."
+  }
+
+
+
+
+
 
 
 
