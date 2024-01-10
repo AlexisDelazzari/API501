@@ -27,6 +27,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/apiPokemon/API501/
+            git reset --hard
             git pull
             cd /var/www/apiPokemon/API501/pokedex
             npm install
