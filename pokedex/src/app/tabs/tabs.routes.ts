@@ -33,14 +33,19 @@ export const routes: Routes = [
 
       {
         path: '',
-        redirectTo: '/tabs/pokedex',
+        redirectTo: '/tabs/accueil',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/pokedex',
+    redirectTo: '/tabs/accueil',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: '/tabs/accueil',
     pathMatch: 'full',
   },
 ];
