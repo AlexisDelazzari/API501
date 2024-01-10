@@ -30,3 +30,4 @@ jobs:
             git pull
             cd /var/www/apiPokemon/API501/pokedex
             npm install
+            ionic build
