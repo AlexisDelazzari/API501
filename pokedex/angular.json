@@ -20,7 +20,8 @@
           "options": {
             "outputPath": "www",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "baseHref": "/site-pokemon/",
+	    "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
