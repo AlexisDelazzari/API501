@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, NgForm} from "@angular/forms";
 import {IonButton, IonContent, IonHeader, IonInput, IonItem, IonList, IonNote, IonRadio, IonRadioGroup, IonTitle, IonToolbar} from "@ionic/angular/standalone";
 import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: "app-inscription",
@@ -17,8 +18,11 @@ export class InscriptionPage implements OnInit {
   userAge!: number;
   userSexe!: string;
 
-  @ViewChild('inscriptionForm') inscriptionForm!: NgForm;
-  constructor(private router: Router) {
+  messageErreur: string = "";
+
+  @ViewChild("inscriptionForm") inscriptionForm!: NgForm;
+
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -28,15 +32,30 @@ export class InscriptionPage implements OnInit {
     this.router.navigate(["tabs", "connexion"]);
   }
 
+  downloadNavigate() {
+    this.router.navigate(["tabs", "download"]);
+  }
+
 
   inscription() {
     if (this.inscriptionForm.valid) {
-      console.log(this.userAge, this.userSexe, this.userEmail, this.userPassword);
-      // Procéder avec l'inscription
+      this.userService.inscription(this.userEmail, this.userPassword, this.userAge, this.userSexe).subscribe((res) => {
+          localStorage.setItem("token", res.token);
+        this.downloadNavigate()
+        },
+        (error) => {
+          console.error("Erreur lors de la requête:", error);
+          this.messageErreur = error.error.message || "Une erreur est survenue lors de l'inscription";
+        }
+      );
     } else {
-      // Afficher des messages d'erreur ou traiter les champs invalides
       console.error("Le formulaire n'est pas valide");
     }
+  }
+
+  validateAndCorrectAge() {
+    return this.userAge > 10;
+
   }
 
 

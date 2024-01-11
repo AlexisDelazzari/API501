@@ -7,8 +7,8 @@ import {Pokedex, Pokemon} from "../models/api-models";
   providedIn: 'root',
 })
 export class PokedexService {
-  // private apiUrl = 'https://alexisdelazzari.site/api-pokemon/'; // Remplacez par l'URL de votre API
   private apiUrl = 'https://alexisdelazzari.site/api-pokemon/'; // Remplacez par l'URL de votre API
+  // private apiUrl = 'http://localhost:3003/'; // Remplacez par l'URL de votre API
 
   constructor(private http: HttpClient) {}
 

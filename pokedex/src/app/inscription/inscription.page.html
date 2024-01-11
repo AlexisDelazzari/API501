@@ -9,7 +9,7 @@
 <ion-content>
   <div class="w-full h-full flex flex-col justify-center items-center  p-5">
     <h1 class="!text-3xl mb-4">Inscription</h1>
-    <form action=""  #inscriptionForm="ngForm" >
+    <form action=""  #inscriptionForm="ngForm" class="w-full max-w-[700px]" >
 
       <ion-list class="w-full max-w-[700px]">
         <ion-item>
@@ -24,7 +24,8 @@
             name="email"
           >
           </ion-input>
-<!--          <p *ngIf="inscriptionForm.controls.email?.invalid && inscriptionForm.controls.email?.touched">Email invalide</p>-->
+
+          <p  class="text-rose-500" *ngIf="inscriptionForm.controls['email']?.invalid && inscriptionForm.controls['email']?.touched">Email invalide</p>
         </ion-item>
         <ion-item>
           <ion-input
@@ -35,10 +36,11 @@
             placeholder="•••••"
             type="password"
             value=""
+
             name="password" required minlength="6"
           >
           </ion-input>
-<!--          <p *ngIf="inscriptionForm.controls.password?.invalid && inscriptionForm.controls.password?.touched">Mot de passe invalide</p>-->
+          <p class="w-full text-rose-500" *ngIf="inscriptionForm.controls['password']?.invalid && inscriptionForm.controls['password']?.touched">Mot de passe invalide</p>
         </ion-item>
         <ion-item>
           <ion-input
@@ -49,18 +51,25 @@
             placeholder="18"
             type="number"
             value=""
+            name="age"
+            min="18"
+            required
           >
           </ion-input>
+          <p  class="text-rose-500" *ngIf="inscriptionForm.controls['age']?.invalid && inscriptionForm.controls['age']?.touched  || (!validateAndCorrectAge() && inscriptionForm.controls['age']?.touched)">
+            L'âge doit être un nombre positif et supperieur à 9
+          </p>
         </ion-item>
         <ion-item>
-          <ion-radio-group [(ngModel)]="userSexe" value="homme">
+          <ion-radio-group [(ngModel)]="userSexe" name="sexe" required>
             <ion-radio class="!text-sm" value="homme">Homme</ion-radio>
             <br/>
             <ion-radio class="!text-sm " value="femme">Femme</ion-radio>
             <br/>
           </ion-radio-group>
         </ion-item>
-        <ion-button (click)="inscription()" [disabled]="!inscriptionForm.valid">Inscription</ion-button>
+        <ion-button (click)="inscription()" [disabled]="!inscriptionForm.valid || !validateAndCorrectAge()">Inscription</ion-button>
+        <p class="ml-4 !text-sm mt-4 flex-wrap text-rose-500">{{messageErreur}}</p>
         <p class="ml-4 !text-sm mt-4 justify-end flex mr-4 flex-wrap">Vous avez déjà un compte ? <a (click)="connexionNavigate()" class="text-blue-600 ml-1">Connectez-vous ici </a></p>
       </ion-list>
     </form>
