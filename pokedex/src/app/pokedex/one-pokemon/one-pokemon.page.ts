@@ -45,7 +45,6 @@ export class OnePokemonPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private pokedexService: PokedexService) {
     this.id = activatedRoute.snapshot.params['id'];
     pokedexService.getOnePokemon(this.id).subscribe((value) => {
-      console.log(value);
       this.onePokemon = value;
       this.initializeChartOptions(); // Initialise le graphique ici
       this.isDataCharged = true

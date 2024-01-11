@@ -26,6 +26,7 @@ export class AuthController {
                 return res.status(HttpCode.NOT_FOUND).json({ message: "Utilisateur non trouvé" });
             }
             const passwordIsValid = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
+            console.log(passwordIsValid, password);
             if (passwordIsValid !== password) {
                 return res.status(HttpCode.UNAUTHORIZED).json({ message: "Mot de passe incorrect" });
             }
@@ -50,6 +51,7 @@ export class AuthController {
             }
             const encryptedPassword = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString();
             const userEntity = HeroRepository.create({ idConnexion: email, password: encryptedPassword, age: age, sexe: sexe });
+            userEntity.sexe = 1
             const newUser = await HeroRepository.save(userEntity);
             const token = jwt.sign(
                 { id: newUser.uuid, email: newUser.idConnexion },
@@ -67,11 +69,11 @@ export class AuthController {
         try {
             const token = req.headers.authorization
             if (!token) {
-                return res.status(HttpCode.UNAUTHORIZED).json({ message: "Vous n'êtes pas authentifié" });
+                return res.status(HttpCode.UNAUTHORIZED).json({ message: "Vous n'êtes pas authentifiéeee" });
             }
             const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
             if (!decodedToken) {
-                return res.status(HttpCode.UNAUTHORIZED).json({ message: "Vous n'êtes pas authentifié" });
+                return res.status(HttpCode.UNAUTHORIZED).json({ message: "Vous n'êtes pas authentifiééééééé" });
             }
             res.status(HttpCode.OK).json({ message: "Vous êtes authentifié" });
         } catch (error) {

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import {IsAuthGuard} from "../guard/is-auth.guard";
 
 export const routes: Routes = [
   {
@@ -7,18 +8,24 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'download',
+        loadComponent: () => import('../download/download.page').then( m => m.DownloadPage),
+        canActivate: [IsAuthGuard]
+      },
+      {
         path: 'pokedex',
-        loadComponent: () =>
-          import('../pokedex/pokedex.page').then((m) => m.PokedexPage),
+        loadComponent: () => import('../pokedex/pokedex.page').then((m) => m.PokedexPage),
       },
       {
         path: 'pokedex/:id',
-        loadComponent: () => import('../pokedex/one-pokemon/one-pokemon.page').then( m => m.OnePokemonPage)
+        loadComponent: () => import('../pokedex/one-pokemon/one-pokemon.page').then( m => m.OnePokemonPage),
+
       },
       {
         path: 'connexion',
         loadComponent: () =>
           import('../connexion/connexion.page').then((m) => m.ConnexionPage),
+
       },
       {
         path: 'inscription',
@@ -31,16 +38,28 @@ export const routes: Routes = [
           import('../accueil/accueil.page').then((m) => m.accueilPage),
       },
 
+
       {
         path: '',
-        redirectTo: '/tabs/pokedex',
+        redirectTo: '/tabs/accueil',
+        pathMatch: 'full',
+      },
+
+      {
+        path: '**',
+        redirectTo: '/tabs/accueil',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/pokedex',
+    redirectTo: '/tabs/accueil',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: '/tabs/accueil',
     pathMatch: 'full',
   },
 ];
