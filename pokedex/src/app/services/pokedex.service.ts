@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Pokedex, Pokemon} from "../models/api-models";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokedexService {
-  private apiUrl = 'https://alexisdelazzari.site/api-pokemon/'; // Remplacez par l'URL de votre API
+  private apiUrl = environment.api_url;
   // private apiUrl = 'http://localhost:3003/'; // Remplacez par l'URL de votre API
 
   constructor(private http: HttpClient) {}

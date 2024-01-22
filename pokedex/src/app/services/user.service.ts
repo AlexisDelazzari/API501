@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  private apiUrl = 'https://alexisdelazzari.site/api-pokemon/'; // Remplacez par l'URL de votre API
+  private apiUrl = environment.api_url;
   // private apiUrl = "http://localhost:3003/"; // Remplacez par l'URL de votre API
 
   constructor(private http: HttpClient) {

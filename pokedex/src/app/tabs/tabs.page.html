@@ -16,6 +16,11 @@
       <ion-label>Connexion</ion-label>
     </ion-tab-button>
 
+    <ion-tab-button href="/tabs/private-pokedex" tab="private-pokedex" *ngIf="isAuth">
+      <img alt="image private pokedex" class="w-1/8" src="./assets/icon/private_pokedex.png">
+      <ion-label>Pokedex privé </ion-label>
+    </ion-tab-button>
+
     <ion-tab-button href="/tabs/download" tab="download" *ngIf="isAuth">
       <img alt="download image" class="w-1/4" src="./assets/icon/dl.svg">
       <ion-label>Profil et téléchargement</ion-label>

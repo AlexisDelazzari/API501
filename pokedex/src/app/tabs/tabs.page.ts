@@ -26,6 +26,5 @@ export class TabsPage {
 
   async isTokenGood() {
     return await this.userService.verifToken(<string>this.token);
-
   }
 }
