@@ -30,10 +30,9 @@
           <ion-col size="12" size-md="6" size-lg="4" *ngFor="let pokemon of pokemons">
             <ion-card>
               <ion-card-header>
-                <ion-card-title>{{pokemon.name}}</ion-card-title>
+                <ion-card-title>{{pokemon.nom}}</ion-card-title>
               </ion-card-header>
               <ion-card-content>
-                <ion-img [src]="pokemon.img"></ion-img>
                 <p>{{pokemon.description}}</p>
               </ion-card-content>
             </ion-card>
