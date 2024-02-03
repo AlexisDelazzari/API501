@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
+import {PokemonModels} from "../models/pokemon-models";
 
 @Component({
   selector: 'app-private-pokedex',
@@ -15,6 +16,7 @@ import {UserService} from "../services/user.service";
 export class PrivatePokedexPage implements OnInit {
   private isConnectSubscription: Subscription;
   isConnect: boolean = false;
+  pokemons: PokemonModels[] = [];
 
   constructor(private userService: UserService) {
     this.isConnectSubscription = this.userService.isLogged$.subscribe((value) => {
