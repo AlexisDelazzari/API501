@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!isConnect">
     <ion-title>
       Connexion
     </ion-title>
@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="w-full h-full flex flex-col justify-center items-center p-5">
+  <div class="w-full h-full flex flex-col justify-center items-center p-5" *ngIf="!isConnect">
     <h1 class="!text-3xl mb-4">Connexion</h1>
     <form action=""  #connexionForm="ngForm" class="w-full max-w-[700px]" >
     <ion-list>
@@ -39,5 +39,8 @@
       <p class="ml-4 !text-sm mt-4 justify-end flex mr-4 flex-wrap">Vous n'avez pas encore de compte ? <a (click)="Inscription()" class="text-blue-600 ml-1">Inscrivez-vous ici </a></p>
     </ion-list>
     </form>
+  </div>
+  <div *ngIf="isConnect">
+    <app-download></app-download>
   </div>
 </ion-content>

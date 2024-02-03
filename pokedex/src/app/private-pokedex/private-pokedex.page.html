@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>private-pokedex</ion-title>
+    <ion-title>Pokedex privé</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +10,16 @@
       <ion-title size="large">private-pokedex</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div *ngIf="!isConnect" class="ion-padding ion-text-center ion-margin">
+    <ion-card class="ion-text-center ion-padding ion-margin ion-text-wrap">
+      <ion-card-header>
+        <ion-card-title>Vous n'êtes pas connecté</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Vous devez être connecté pour accéder à cette page</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
 </ion-content>

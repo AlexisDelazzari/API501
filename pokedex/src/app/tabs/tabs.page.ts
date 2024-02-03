@@ -4,6 +4,7 @@ import {addIcons} from "ionicons";
 import {ellipse, square, triangle} from "ionicons/icons";
 import {UserService} from "../services/user.service";
 import {NgIf} from "@angular/common";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: "app-tabs",
@@ -15,13 +16,15 @@ import {NgIf} from "@angular/common";
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
   token = localStorage.getItem("token");
+  private isConnectSubscription: Subscription;
   isAuth: boolean = false;
 
   constructor(private userService: UserService) {
     addIcons({triangle, ellipse, square});
-    this.isTokenGood().then(res => {
-      this.isAuth = res;
+    this.isConnectSubscription = this.userService.isLogged$.subscribe((value) => {
+      this.isAuth = value;
     });
+
   }
 
   async isTokenGood() {

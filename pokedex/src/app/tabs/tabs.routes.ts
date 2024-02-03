@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadComponent: () => import('../pokedex/pokedex.page').then((m) => m.PokedexPage),
       },
       {
+        path: 'private-pokedex',
+        loadComponent: () => import('../private-pokedex/private-pokedex.page').then((m) => m.PrivatePokedexPage),
+      },
+      {
         path: 'pokedex/:id',
         loadComponent: () => import('../pokedex/one-pokemon/one-pokemon.page').then( m => m.OnePokemonPage),
 
