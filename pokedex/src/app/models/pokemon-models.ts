@@ -24,39 +24,39 @@ export class PokemonModels {
     taille: string;
     type1?: TypeModels;
     type2?: TypeModels;
-    talent1?: TalentEffetModels;
-    talent2?: TalentEffetModels;
+    talent1?: TalentEffetModels | null;
+    talent2?: TalentEffetModels | null;
     listAttaque?: ListAttaqueModels;
-    lieux?: LieuxModels;
-    listItemDrop?: ListItemDropModels;
-    pokemonEvolution?: DefaultPokemonModels;
+    lieux?: LieuxModels | null;
+    listItemDrop?: ListItemDropModels | null;
+    pokemonEvolution?: DefaultPokemonModels | null;
 
-    constructor(
-        id: number,
-        image: string,
-        poids: string,
-        nom: string,
-        description: string,
-        tauxCapture: number,
-        pv: number,
-        attaque: number,
-        defense: number,
-        attaqueSpeciale: number,
-        vitesse: number,
-        total: number,
-        xp: number,
-        niveauEvolution: number | null,
-        defenseSpeciale: number,
-        taille: string,
-        type1?: TypeModels,
-        type2?: TypeModels,
-        talent1?: TalentEffetModels,
-        talent2?: TalentEffetModels,
-        listAttaque?: ListAttaqueModels,
-        lieux?: LieuxModels,
-        listItemDrop?: ListItemDropModels,
-        pokemonEvolution?: DefaultPokemonModels
-    ) {
+  constructor(
+    id: number,
+    image: string,
+    poids: string,
+    nom: string,
+    description: string,
+    tauxCapture: number,
+    pv: number,
+    attaque: number,
+    defense: number,
+    attaqueSpeciale: number,
+    vitesse: number,
+    total: number,
+    xp: number,
+    niveauEvolution: number | null,
+    defenseSpeciale: number,
+    taille: string,
+    type1?: TypeModels,
+    type2?: TypeModels,
+    talent1?: TalentEffetModels | null,
+    talent2?: TalentEffetModels | null,
+    listAttaque?: ListAttaqueModels,
+    lieux?: LieuxModels | null,
+    listItemDrop?: ListItemDropModels | null,
+    pokemonEvolution?: DefaultPokemonModels | null
+  ) {
         this.id = id;
         this.image = image;
         this.poids = poids;

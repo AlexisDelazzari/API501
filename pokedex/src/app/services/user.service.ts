@@ -47,6 +47,7 @@ export class UserService {
       })
         .then((response) => response.json())
         .then((response) => {
+          this.updateIsLogged(true);
           observer.next(response);
           observer.complete();
         });
@@ -63,7 +64,6 @@ export class UserService {
         "Authorization": `Bearer ${token}`
       })
     });
-    console.log(resonse);
 
     if (resonse.status === 200) {
       this.isLogged.next(true);

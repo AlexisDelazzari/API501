@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import {IsAuthGuard} from "../guard/is-auth.guard";
-
+import {UserService} from "../services/user.service";
+import {UpdateTokenService} from "../guard/update-token.service";
 export const routes: Routes = [
   {
     path: 'tabs',
@@ -15,31 +16,36 @@ export const routes: Routes = [
       {
         path: 'pokedex',
         loadComponent: () => import('../pokedex/pokedex.page').then((m) => m.PokedexPage),
+        canActivate: [UpdateTokenService]
       },
       {
         path: 'private-pokedex',
         loadComponent: () => import('../private-pokedex/private-pokedex.page').then((m) => m.PrivatePokedexPage),
+        canActivate: [UpdateTokenService]
       },
       {
         path: 'pokedex/:id',
         loadComponent: () => import('../pokedex/one-pokemon/one-pokemon.page').then( m => m.OnePokemonPage),
+        canActivate: [UpdateTokenService]
 
       },
       {
         path: 'connexion',
-        loadComponent: () =>
-          import('../connexion/connexion.page').then((m) => m.ConnexionPage),
+        loadComponent: () => import('../connexion/connexion.page').then((m) => m.ConnexionPage),
+        canActivate: [UpdateTokenService]
 
       },
       {
         path: 'inscription',
-        loadComponent: () =>
-          import('../inscription/inscription.page').then((m) => m.InscriptionPage),
+        loadComponent: () => import('../inscription/inscription.page').then((m) => m.InscriptionPage),
+        canActivate: [UpdateTokenService]
       },
       {
         path: 'accueil',
         loadComponent: () =>
           import('../accueil/accueil.page').then((m) => m.accueilPage),
+        canActivate: [UpdateTokenService]
+
       },
 
 

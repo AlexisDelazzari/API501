@@ -58,7 +58,7 @@ export class AttaqueModels {
     priorite: number;
     description: string;
     precision: number;
-    attaqueEvol?: AttaqueModels;
+    attaqueEvol?: AttaqueModels | null;
     effet?: EffetModels;
     type?: TypeModels;
     categorie?: CategorieModels;
@@ -73,7 +73,7 @@ export class AttaqueModels {
         priorite: number,
         description: string,
         precision: number,
-        attaqueEvol?: AttaqueModels,
+        attaqueEvol?: AttaqueModels | null,
         effet?: EffetModels,
         type?: TypeModels,
         categorie?: CategorieModels,
