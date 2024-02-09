@@ -25,11 +25,10 @@
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <div *ngIf="pokemons.length > 0">
-      //on affiche un pokemon par ligne avec un ion-card et un ion-row pour chaque pokemon avec son image et son nom des graphique de type et de stats
       <ion-card *ngFor="let pokemon of pokemons" class="ion-padding">
         <ion-row>
           <ion-col size="12" size-md="4" class="ion-text-center">
-            <img [src]="pokemon.image" [alt]="pokemon.nom" />
+            <img [src]="pokemon.image" [alt]="pokemon.nom"/>
           </ion-col>
           <ion-col size="12" size-md="8">
             <ion-row>
@@ -37,6 +36,25 @@
                 <ion-card>
                   <ion-card-header>
                     <ion-card-title>Type</ion-card-title>
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      //juste pour test on affiche tout les types de pokemons
+      <ion-card *ngFor="let type of allType" class="ion-padding">
+        <ion-row>
+          <ion-col size="12" size-md="4" class="ion-text-center">
+            <img [src]="type.image" [alt]="type.name"/>
+          </ion-col>
+          <ion-col size="12" size-md="8">
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>{{ type.name }}</ion-card-title>
                   </ion-card-header>
                 </ion-card>
               </ion-col>

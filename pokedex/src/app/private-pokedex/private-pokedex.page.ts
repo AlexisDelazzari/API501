@@ -17,6 +17,8 @@ import {CritiqueModels} from "../models/critique-models";
 import {CategorieModels} from "../models/categorie-models";
 import {EffetModels} from "../models/effet-models";
 import {StatusModels} from "../models/status-models";
+import {allTypePokemon} from "../static/allTypePokemon";
+import {AllEffectPokemon} from "../static/AllEffectPokemon";
 
 @Component({
   selector: 'app-private-pokedex',
@@ -29,6 +31,7 @@ export class PrivatePokedexPage  {
   private isConnectSubscription: Subscription;
   isConnect: boolean = false;
   pokemons: PokemonModels[] = [];
+  allType = AllEffectPokemon
 
   //DefaultPokemonModels
 
@@ -46,8 +49,8 @@ export class PrivatePokedexPage  {
   listAttaque: ListAttaqueModels = new ListAttaqueModels(1, 1, 1, this.attaque);
   listAttaque2: ListAttaqueModels = new ListAttaqueModels(1, 2, 1, this.attaque2);
 
-  pokemonDefault: DefaultPokemonModels = new DefaultPokemonModels(1, "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png", "6.9 kg", "Bulbizarre", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", 45, 45, 49, 49, 65, 65, 318, 64, 16, 65, "0.7 m", this.type1, this.type2, null, null, this.listAttaque, null, null, null);
-  pokemon: PokemonModels = new PokemonModels(1, "Bulbizarre", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", "test", "test", 49, 49, 65, 65, 318, 64, 16, 65, 5, 10, "10", this.type1, this.type2,null, null, this.listAttaque, null, null, null);
+  pokemonDefault: DefaultPokemonModels = new DefaultPokemonModels(1, "https://static.printler.com/cache/c/5/a/7/7/8/c5a7786aed7583aa0e478c3ef4131764695ef603.jpg", "6.9 kg", "Bulbizarre", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", 45, 45, 49, 49, 65, 65, 318, 64, 16, 65, "0.7 m", this.type1, this.type2, null, null, this.listAttaque, null, null, null);
+  pokemon: PokemonModels = new PokemonModels(1, "https://static.printler.com/cache/c/5/a/7/7/8/c5a7786aed7583aa0e478c3ef4131764695ef603.jpg", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", "test", "test", 49, 49, 65, 65, 318, 64, 16, 65, 5, 10, "10", this.type1, this.type2,null, null, this.listAttaque, null, null, null);
 
 
   constructor(private userService: UserService) {
