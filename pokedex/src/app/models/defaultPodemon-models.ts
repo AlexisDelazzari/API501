@@ -25,7 +25,7 @@ export class DefaultPokemonModels {
     type2?: TypeModels;
     talent1?: TalentEffetModels | null;
     talent2?: TalentEffetModels | null;
-    listAttaque?: ListAttaqueModels;
+    listAttaque: ListAttaqueModels[] | undefined;
     lieux?: LieuxModels | null;
     listItemDrop?: ListItemDropModels | null;
     pokemonEvolution?: DefaultPokemonModels | null;
@@ -51,7 +51,7 @@ export class DefaultPokemonModels {
     type2?: TypeModels,
     talent1?: TalentEffetModels | null,
     talent2?: TalentEffetModels | null,
-    listAttaque?: ListAttaqueModels,
+    listAttaque?: ListAttaqueModels[],
     lieux?: LieuxModels | null,
     listItemDrop?: ListItemDropModels | null,
     pokemonEvolution?: DefaultPokemonModels | null

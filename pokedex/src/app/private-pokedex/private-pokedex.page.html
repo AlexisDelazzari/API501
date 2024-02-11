@@ -25,39 +25,85 @@
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <div *ngIf="pokemons.length > 0">
-      <ion-card *ngFor="let pokemon of pokemons" class="ion-padding">
+      <ion-card *ngFor="let pokemon of pokemons" class="ion-padding ion-margin ion-text-wrap rounded-xl">
         <ion-row>
-          <ion-col size="12" size-md="4" class="ion-text-center">
-            <img [src]="pokemon.image" [alt]="pokemon.nom"/>
+          <ion-col size="12" size-md="3" class="ion-text-center ion-justify-content-center">
+            <img [src]="pokemon.image" [alt]="pokemon.nom" class="rounded-xl">
           </ion-col>
-          <ion-col size="12" size-md="8">
+          <ion-col size="12" size-md="5" class="mt-4">
+            <ion-card-title>{{ pokemon.nom[0].toUpperCase() + pokemon.nom.slice(1) }}</ion-card-title>
+            <ion-card-subtitle class="ml-4 mt-2">{{ pokemon.description }}</ion-card-subtitle>
+            <ion-row class="ion-text-center ion-justify-content-center">
+              <ion-chip *ngIf="pokemon.type1">
+                <ion-label>{{ pokemon.type1.name }}</ion-label>
+                <img [src]="pokemon.type1.image" [alt]="pokemon.type1.name" width="20" height="20" class="ml-4">
+              </ion-chip>
+              <ion-chip *ngIf="pokemon.type2">
+                <ion-label>{{ pokemon.type2.name }}</ion-label>
+                <img [src]="pokemon.type2.image" [alt]="pokemon.type2.name" width="20" height="20" class="ml-4">
+              </ion-chip>
+            </ion-row>
             <ion-row>
-              <ion-col size="12" size-md="6">
-                <ion-card>
+              <ion-col size="6" class="ion-text-center">
+                <ion-label>Taille </ion-label>
+                  <ion-label color="primary">{{ pokemon.taille }}</ion-label>
+              </ion-col>
+              <ion-col size="6" class="ion-text-center">
+                <ion-label>Poids </ion-label>
+                <ion-label color="primary">{{ pokemon.poids }}</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-text-center ion-justify-content-center">
+              <ion-col *ngFor="let list of pokemon.listAttaque" class=" rounded-xl" size="12" size-md="6">
+                <ion-card class="ion-padding ion-margin ion-text-wrap rounded-xl border border-primary">
+                  <img [src]="list.attaque.effet?.image" [alt]="list.attaque.effet?.image" class="test rounded-xl" height="20">
                   <ion-card-header>
-                    <ion-card-title>Type</ion-card-title>
+                    <ion-card-title>{{ list.attaque.nom[0].toUpperCase() + list.attaque.nom.slice(1) }}</ion-card-title>
+                    <ion-card-subtitle>Level : <ion-label color="primary">{{ list.niveau }}</ion-label></ion-card-subtitle>
                   </ion-card-header>
+                  <ion-card-content>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-label>{{ list.attaque.description }}</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-label>Dégats </ion-label><br />
+                        <ion-label color="primary">{{ list.attaque.puissance }}</ion-label>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-label>PP </ion-label> <br />
+                        <ion-label color="primary">{{ list.attaque.pp }}</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-label>Type </ion-label><br />
+                        <ion-chip class="ion-text-center">
+                          <ion-label>{{ list.attaque.type?.name }}</ion-label>
+                          <img [src]="list.attaque.type?.image" [alt]="list.attaque.type?.image" width="20" height="20" class="ml-4">
+                        </ion-chip>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card-content>
                 </ion-card>
               </ion-col>
             </ion-row>
           </ion-col>
-        </ion-row>
-      </ion-card>
-      //juste pour test on affiche tout les types de pokemons
-      <ion-card *ngFor="let type of allType" class="ion-padding">
-        <ion-row>
-          <ion-col size="12" size-md="4" class="ion-text-center">
-            <img [src]="type.image" [alt]="type.name"/>
-          </ion-col>
-          <ion-col size="12" size-md="8">
-            <ion-row>
-              <ion-col size="12" size-md="6">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>{{ type.name }}</ion-card-title>
-                  </ion-card-header>
-                </ion-card>
-              </ion-col>
+          <ion-col size="12" size-md="4" class="center ion-align-items-center">
+            <ion-row class="ion-justify-content-center">
+              <apx-chart
+                [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels"
+                [fill]="chartOptions.fill"
+                [series]="[{
+                name: pokemon.nom,
+                data: [pokemon.pv, pokemon.attaque, pokemon.defense, pokemon.vitesse, pokemon.defenseSpeciale, pokemon.attaqueSpeciale]
+            }]"
+                [stroke]="chartOptions.stroke"
+                [xaxis]="chartOptions.xaxis"
+              ></apx-chart>
             </ion-row>
           </ion-col>
         </ion-row>
