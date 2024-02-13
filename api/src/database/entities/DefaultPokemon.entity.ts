@@ -16,7 +16,7 @@ export class DefaultPokemonEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: "longtext", nullable: true })
     image: string;
 
     @Column({ type: 'varchar', length: 11 })
@@ -46,7 +46,7 @@ export class DefaultPokemonEntity {
     @Column({ type: 'int' })
     vitesse: number;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', nullable : true })
     total: number;
 
     @Column({ type: 'int', nullable : true })

@@ -1,15 +1,18 @@
 export class TypeModels {
-    uuid: number;
+    id: number;
     name: string;
     image: string;
+    description: string;
 
     constructor(
-        uuid: number,
+        id: number,
         name: string,
-        image: string
+        image: string,
+        description: string
     ) {
-        this.uuid = uuid;
+        this.id = id;
         this.name = name;
         this.image = image;
+        this.description = description;
     }
 }

@@ -47,7 +47,9 @@ export class UserService {
       })
         .then((response) => response.json())
         .then((response) => {
-          this.updateIsLogged(true);
+          if (response.token) {
+            this.isLogged.next(true);
+          }
           observer.next(response);
           observer.complete();
         });

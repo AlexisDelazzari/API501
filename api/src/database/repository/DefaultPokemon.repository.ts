@@ -26,4 +26,9 @@ export const DefaultPokemonRepository = dataSource.getRepository(DefaultPokemonE
         console.log(pouet);
         return pouet;
     },
+
+    async addPokemon(pokemon: DefaultPokemonEntity) : Promise<DefaultPokemonEntity> {
+        const newPokemon = this.create(pokemon);
+        return this.save(newPokemon);
+    }
 })

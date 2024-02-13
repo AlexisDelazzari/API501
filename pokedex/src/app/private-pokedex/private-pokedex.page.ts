@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {IonicModule} from '@ionic/angular';
+import {IonicModule, ModalController} from '@ionic/angular';
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
 import {PokemonModels} from "../models/pokemon-models";
@@ -27,6 +27,8 @@ import {
   ApexTitleSubtitle, ApexXAxis,
   NgApexchartsModule
 } from "ng-apexcharts";
+import {TypePokemonComponent} from "./modals/type-pokemon/type-pokemon.component";
+import {AddComponent} from "./add/add.component";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -93,13 +95,13 @@ export class PrivatePokedexPage {
 
   //DefaultPokemonModels
 
-  type1: TypeModels = new TypeModels(1, "Plante", allTypePokemon[0].image);
-  type2: TypeModels = new TypeModels(2, "Eau", allTypePokemon[2].image);
+  type1: TypeModels = allTypePokemon[0];
+  type2: TypeModels = allTypePokemon[1];
 
   critique: CritiqueModels = new CritiqueModels(1, 0.45, "Le lanceur charge l'ennemi avec une force énorme.");
   categorie: CategorieModels = new CategorieModels(1, "Physique", "Le lanceur charge l'ennemi avec une force énorme.");
   status: StatusModels = new StatusModels(1, "Brulure", "Le lanceur charge l'ennemi avec une force énorme.");
-  effet: EffetModels = new EffetModels(1, "Brulure", this.status, AllEffectPokemon[0].image);
+  effet: EffetModels = AllEffectPokemon[0];
 
   attaque: AttaqueModels = new AttaqueModels(1, "Charge", 1, 40, 35, 0, "Le lanceur charge l'ennemi avec une force énorme.", 100, null, this.effet, this.type1, this.categorie, this.critique);
   attaque2: AttaqueModels = new AttaqueModels(2, "Charge", 1, 40, 35, 0, "Le lanceur charge l'ennemi avec une force énorme.", 100, null, this.effet, this.type1, this.categorie, this.critique);
@@ -109,7 +111,10 @@ export class PrivatePokedexPage {
 
   pokemonDefault: DefaultPokemonModels = new DefaultPokemonModels(1, "https://static.printler.com/cache/c/5/a/7/7/8/c5a7786aed7583aa0e478c3ef4131764695ef603.jpg", "6.9 kg", "Bulbizarre", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", 45, 45, 49, 49, 65, 65, 318, 64, 16, 65, "0.7 m", this.type1, this.type2, null, null, [this.listAttaque, this.listAttaque2], null, null, null);
 
-  constructor(private userService: UserService) {
+  selectedTypes: TypeModels[] = [];
+  searchText: string = "";
+
+  constructor(private userService: UserService, private modalController: ModalController) {
     this.isConnectSubscription = this.userService.isLogged$.subscribe((value) => {
       this.isConnect = value;
     });
@@ -117,4 +122,44 @@ export class PrivatePokedexPage {
     this.pokemons.push(this.pokemonDefault);
     this.pokemons.push(this.pokemonDefault);
   }
+
+  async openTypePokemonModal(type: TypeModels) {
+    const modal = await this.modalController.create({
+      component: TypePokemonComponent,
+      componentProps: {
+        type: type
+      }
+    });
+    return await modal.present();
+  }
+  async openAddPokemonModal() {
+    const modal = await this.modalController.create({
+      component: AddComponent,
+      backdropDismiss: false,
+    });
+     await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      this.pokemons.push(data);
+    }
+  }
+
+  get filteredPokemons(): DefaultPokemonModels[] {
+    return this.pokemons.filter((pokemon) => {
+      let typeMatch1 = false;
+      let typeMatch2 = false;
+
+      if (pokemon.type1) {
+        typeMatch1 = this.selectedTypes.length === 0 || this.selectedTypes.includes(pokemon.type1);
+      }
+      if (pokemon.type2) {
+        typeMatch2 = this.selectedTypes.length === 0 || this.selectedTypes.includes(pokemon.type2);
+      }
+      const nameMatch = pokemon.nom.toLowerCase().includes(this.searchText.toLowerCase());
+
+      return (typeMatch1 || typeMatch2) && nameMatch;
+    });
+  }
+
+  protected readonly allTypePokemon = allTypePokemon;
 }

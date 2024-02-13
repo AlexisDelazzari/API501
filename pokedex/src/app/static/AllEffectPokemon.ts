@@ -24,6 +24,11 @@ export const AllEffectPokemon = [
     name: "sleep",
     image: "./assets/img/effectPokemon/effetSleep.png",
   },
+  {
+    id: 6,
+    name: "aucun",
+    image: "",
+  }
 ];
 
 

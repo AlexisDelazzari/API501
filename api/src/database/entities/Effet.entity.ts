@@ -15,7 +15,6 @@ export class EffetEntity {
     @Column({ type: 'varchar', length: 255 })
     name: string;
 
-    @ManyToOne(() => StatusEntity, status => status.uuid)
-    @JoinColumn({ name: 'uuidStatus' , referencedColumnName: 'uuid'})
-    status: StatusEntity;
+    @Column({ type: 'longtext' })
+    image: string;
 }

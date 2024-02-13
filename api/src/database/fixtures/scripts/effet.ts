@@ -8,10 +8,9 @@ export default async function insertEffet() {
     const effetsEntities: EffetEntity[] = [];
     for (const element of effets) {
         const effetsEntity: EffetEntity = new EffetEntity();
-        effetsEntity.uuid = Number(element[1])
-        effetsEntity.name = element[0];
-        effetsEntity.status = await StatusRepository.findOneByOrFail( {uuid: Number(element[1])});
-
+        effetsEntity.uuid = element.id;
+        effetsEntity.name = element.name;
+        effetsEntity.image = element.image;
         effetsEntities.push(effetsEntity);
     }
 

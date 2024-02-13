@@ -1,19 +1,16 @@
 import { StatusModels } from './status-models';
 export class EffetModels {
-    uuid: number;
+    id: number;
     name: string;
     image: string;
-    status: StatusModels;
 
     constructor(
-        uuid: number,
+        id: number,
         name: string,
-        status: StatusModels,
         image: string
     ) {
-        this.uuid = uuid;
+        this.id = id;
         this.name = name;
-        this.status = status;
         this.image = image;
     }
 }
