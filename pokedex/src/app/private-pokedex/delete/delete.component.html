@@ -1,3 +1,15 @@
-<p>
-  delete works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Confirmation de suppression</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="ion-text-center">
+    <ion-icon name="alert-circle" size="large" color="danger"></ion-icon>
+    <h2 class="ion-padding">Êtes-vous sûr de vouloir supprimer ce Pokémon ?</h2>
+    <p>{{ pokemon?.nom }}</p>
+    <ion-button expand="block" color="danger" (click)="confirmer()">Supprimer</ion-button>
+    <ion-button expand="block" color="medium" (click)="annuler()">Annuler</ion-button>
+  </div>
+</ion-content>

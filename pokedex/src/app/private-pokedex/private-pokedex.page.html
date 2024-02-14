@@ -10,6 +10,7 @@
       <ion-title size="large">private-pokedex</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <div *ngIf="!isConnect" class="ion-padding ion-text-center ion-margin">
     <ion-card class="ion-text-center ion-padding ion-margin ion-text-wrap">
       <ion-card-header>
@@ -20,30 +21,32 @@
       </ion-card-content>
     </ion-card>
   </div>
+
   <ion-card class="ion-padding ion-margin ion-text-wrap rounded-xl" *ngIf="isConnect">
     <ion-card-title>Filtre</ion-card-title>
-    <ion-row>
+    <ion-row class="ion-align-items-center">
       <ion-col size="12" size-md="6" class="ion-padding">
-        <ion-searchbar [(ngModel)]="searchText" placeholder="Rechercher un pokemon"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="searchText" placeholder="Rechercher un Pokémon"></ion-searchbar>
       </ion-col>
       <ion-col size="12" size-md="3" class="ion-padding ion-text-right mt-2">
         <ion-button class="btn-add" (click)="openAddPokemonModal()">
-          Ajouter un Pokemon
+          Ajouter un Pokémon
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-card>
+
   <div *ngIf="isConnect" class="ion-padding">
     <div *ngIf="pokemons.length === 0" class="ion-text-center" size="12">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <div *ngIf="pokemons.length > 0">
-      <ion-card *ngFor="let pokemon of filteredPokemons" >
-        <ion-row>
+      <ion-card *ngFor="let pokemon of filteredPokemons" class="pokemon-card">
+        <ion-row class="ion-align-items-center">
           <ion-col size="12" size-md="3" class="ion-text-center ion-justify-content-center">
-            <img [src]="pokemon.image" [alt]="pokemon.nom" class="rounded-xl">
+            <img [src]="pokemon.image" [alt]="pokemon.nom" class="rounded-xl pokemon-image">
           </ion-col>
-          <ion-col size="12" size-md="5" class="mt-4">
+          <ion-col size="12" size-md="9" class="mt-4">
             <ion-card-title>{{ pokemon.nom[0].toUpperCase() + pokemon.nom.slice(1) }}</ion-card-title>
             <ion-card-subtitle class="ml-4 mt-2">{{ pokemon.description }}</ion-card-subtitle>
             <ion-row class="ion-text-center ion-justify-content-center">
@@ -56,12 +59,12 @@
                 <img [src]="pokemon.type2.image" [alt]="pokemon.type2.name" width="20" height="20" class="ml-4">
               </ion-chip>
             </ion-row>
-            <ion-row>
-              <ion-col size="6" class="ion-text-center">
+            <ion-row class="ion-text-center">
+              <ion-col size="6">
                 <ion-label>Taille </ion-label>
-                  <ion-label color="primary">{{ pokemon.taille }}</ion-label>
+                <ion-label color="primary">{{ pokemon.taille }}</ion-label>
               </ion-col>
-              <ion-col size="6" class="ion-text-center">
+              <ion-col size="6">
                 <ion-label>Poids </ion-label>
                 <ion-label color="primary">{{ pokemon.poids }}</ion-label>
               </ion-col>
@@ -75,11 +78,7 @@
                     <ion-card-subtitle>Level : <ion-label color="primary">{{ list.niveau }}</ion-label></ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-row>
-                      <ion-col size="12">
-                        <ion-label>{{ list.attaque.description }}</ion-label>
-                      </ion-col>
-                    </ion-row>
+                    <ion-label>{{ list.attaque.description }}</ion-label>
                     <ion-row>
                       <ion-col size="6">
                         <ion-label>Dégats </ion-label><br />
@@ -104,20 +103,8 @@
               </ion-col>
             </ion-row>
           </ion-col>
-          <ion-col size="12" size-md="4" class="center ion-align-items-center">
-            <ion-row class="ion-justify-content-center">
-              <apx-chart
-                [chart]="chartOptions.chart"
-                [dataLabels]="chartOptions.dataLabels"
-                [fill]="chartOptions.fill"
-                [series]="[{
-                name: pokemon.nom,
-                data: [pokemon.pv, pokemon.attaque, pokemon.defense, pokemon.vitesse, pokemon.defenseSpeciale, pokemon.attaqueSpeciale]
-            }]"
-                [stroke]="chartOptions.stroke"
-                [xaxis]="chartOptions.xaxis"
-              ></apx-chart>
-            </ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-button (click)="openDeletePokemonModal(pokemon)" color="danger">Supprimer</ion-button>
           </ion-col>
         </ion-row>
       </ion-card>

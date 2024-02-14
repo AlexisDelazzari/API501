@@ -10,10 +10,10 @@ export const DefaultPokemonRepository = dataSource.getRepository(DefaultPokemonE
 
     },
 
-    async getOnePokemon(id : number) : Promise<DefaultPokemonEntity> {
+    async getOnePokemon(id : number, hasHero : boolean = false) : Promise<DefaultPokemonEntity> {
         return await this.findOne({
-            where: { id: id , hasHero: false },
-            relations: ['type1', 'type2', 'talent1', 'talent2']
+            where: { id: id , hasHero: hasHero },
+            relations: ['type1', 'type2', 'talent1', 'talent2', 'listAttaques','listAttaques.attaque','listAttaques.attaque.effet','listAttaques.attaque.type']
         });
     },
 

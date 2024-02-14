@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Pokedex, Pokemon} from "../models/api-models";
 import {environment} from "../../environments/environment";
@@ -10,8 +10,20 @@ import {DefaultPokemonModels} from "../models/defaultPodemon-models";
 })
 export class PokedexService {
   private apiUrl = environment.api_url;
-
+  allPokemon: DefaultPokemonModels[] = [];
+  private allPokemonObservable = new BehaviorSubject<DefaultPokemonModels[]>(this.allPokemon);
   // private apiUrl = 'http://localhost:3003/'; // Remplacez par l'URL de votre API
+
+  get allPokemon$(): Observable<DefaultPokemonModels[]> {
+    return this.allPokemonObservable.asObservable();
+  }
+
+  updatePokemonList() {
+    this.getAllPrivatePokemon().subscribe((pokemon) => {
+      this.allPokemon = pokemon;
+      this.allPokemonObservable.next(this.allPokemon);
+    });
+  }
 
   constructor(private http: HttpClient) {
   }
@@ -37,9 +49,23 @@ export class PokedexService {
       })
         .then((response) => response.json())
         .then((response) => {
+          observer.next(response);
+          observer.complete();
+        });
+    });
+  }
 
-
-
+  deletePokemon(id: number): Observable<DefaultPokemonModels> {
+    return new Observable<DefaultPokemonModels>((observer) => {
+      fetch(`${this.apiUrl}/pokedex/private/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
           observer.next(response);
           observer.complete();
         });

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule, ModalController} from '@ionic/angular';
@@ -30,6 +30,7 @@ import {
 import {TypePokemonComponent} from "./modals/type-pokemon/type-pokemon.component";
 import {AddComponent} from "./add/add.component";
 import {PokedexService} from "../services/pokedex.service";
+import {DeleteComponent} from "./delete/delete.component";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -49,8 +50,9 @@ export type ChartOptions = {
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, NgOptimizedImage, NgApexchartsModule]
 })
-export class PrivatePokedexPage {
+export class PrivatePokedexPage  {
   isConnect: boolean = false;
+  private pokemonsSubscription: Subscription;
   pokemons: DefaultPokemonModels[] = [];
   private isConnectSubscription: Subscription;
   chartOptions: ChartOptions = {
@@ -101,10 +103,19 @@ export class PrivatePokedexPage {
     this.isConnectSubscription = this.userService.isLogged$.subscribe((value) => {
       this.isConnect = value;
     });
-    pokedexService.getAllPrivatePokemon().subscribe((value) => {
-      this.pokemons = value;
-      console.log(this.pokemons);
+    this.pokemonsSubscription = this.pokedexService.getAllPrivatePokemon().subscribe((pokemons) => {
+      this.pokemons = pokemons;
     });
+  }
+
+  async loadNewPokemons(){
+    this.pokemonsSubscription = this.pokedexService.getAllPrivatePokemon().subscribe((pokemons) => {
+      this.pokemons = pokemons;
+    });
+  }
+
+  ionViewWillEnter() {
+    this.loadNewPokemons()
   }
 
   async openTypePokemonModal(type: TypeModels) {
@@ -125,6 +136,22 @@ export class PrivatePokedexPage {
     const { data } = await modal.onDidDismiss();
     if (data) {
       this.pokemons.push(data);
+    }
+  }
+
+  async openDeletePokemonModal(pokemon:DefaultPokemonModels) {
+    const modal = await this.modalController.create({
+      component: DeleteComponent,
+      backdropDismiss: false,
+      componentProps: {
+        pokemon: pokemon
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      console.log(data);
+      this.pokemons = this.pokemons.filter((p) => p.id !== pokemon.id);
     }
   }
 

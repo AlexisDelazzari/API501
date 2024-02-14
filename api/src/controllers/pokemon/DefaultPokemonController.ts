@@ -28,6 +28,8 @@ export class DefaultPokemonController {
         this.router.get('/private', this.getAllPrivatePokedexHandler.bind(this));
         this.router.get('/:id', this.getOnePokedexHandler.bind(this));
 
+        this.router.delete('/private/:id', this.deletePokemonHandler.bind(this));
+
         this.router.post('/', this.addPokemonHandler.bind(this));
     }
 
@@ -68,6 +70,35 @@ export class DefaultPokemonController {
             const allPokemon = await DefaultPokemonRepository.getAllPrivatePokemon(decoded.id);
             res.status(HttpCode.OK).json(allPokemon);
 
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({error: 'Internal Server Error'});
+        }
+    }
+
+    private async deletePokemonHandler(req: Request, res: Response): Promise<void> {
+        try {
+            const token = req.headers.authorization?.split(" ")[1];
+            const decoded = jwt.verify(token, process.env.SECRET_KEY);
+            if (typeof decoded === 'string') {
+                res.status(401).json({error: 'Unauthorized'});
+                return;
+            }
+            const hero = HeroRepository.findOneBy({uuid: decoded.id})
+            if (!hero) {
+                res.status(401).json({error: 'Unauthorized'});
+                return;
+            }
+
+            const pokemon = await DefaultPokemonRepository.getOnePokemon(Number(req.params.id), true);
+            console.log(pokemon);
+            if (!pokemon) {
+                res.status(404).json({error: 'Pokemon not found'});
+                return;
+            }
+            await ListAttaqueRepository.deleteListAttaque(pokemon.listAttaques);
+            await DefaultPokemonRepository.delete({id : pokemon.id})
+            res.status(HttpCode.OK).json({message: 'Pokemon deleted'});
         } catch (error) {
             console.log(error);
             res.status(500).json({error: 'Internal Server Error'});

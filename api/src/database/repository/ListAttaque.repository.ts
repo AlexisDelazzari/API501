@@ -16,5 +16,9 @@ export const ListAttaqueRepository = dataSource.getRepository(ListAttaqueEntity)
             .select("MAX(listAttaque.uuidList)", "max")
             .getRawOne();
         return lastUuidList.max;
+    },
+
+    async deleteListAttaque(listAttaque : ListAttaqueEntity[]) : Promise<void> {
+        await this.remove(listAttaque);
     }
 })

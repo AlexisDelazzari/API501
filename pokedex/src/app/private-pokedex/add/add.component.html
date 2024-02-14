@@ -62,6 +62,9 @@
         <ion-item>
           <ion-input type="file" (change)="onFileChange($event)" name="image" required label="Image"></ion-input>
         </ion-item>
+        <ion-item *ngIf="listAttaques.length > 0 && selectedAttaques.length === 0" class="red">
+          Attention, vous devez sélectionner parmi les attaques ajoutées.
+        </ion-item>
 
         <ion-item *ngIf="listAttaques.length > 0">
           <ion-select multiple="true" [(ngModel)]="selectedAttaques" name="selectedAttaques" required label="Attaques">
