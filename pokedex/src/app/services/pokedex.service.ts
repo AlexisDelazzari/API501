@@ -26,6 +26,26 @@ export class PokedexService {
     return this.http.get<Pokemon>(url);
   }
 
+  getAllPrivatePokemon(): Observable<DefaultPokemonModels[]> {
+    return new Observable<DefaultPokemonModels[]>((observer) => {
+      fetch(`${this.apiUrl}/pokedex/private`, {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application',
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+
+
+
+          observer.next(response);
+          observer.complete();
+        });
+    });
+  }
+
   addPokemon(pokemon: DefaultPokemonModels): Observable<DefaultPokemonModels> {
     return new Observable<DefaultPokemonModels>((observer) => {
       fetch(`${this.apiUrl}/pokedex`, {

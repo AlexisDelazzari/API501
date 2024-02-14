@@ -25,7 +25,9 @@ export class AddComponent {
   listAttaques: AttaqueModels[] = [];
   selectedAttaques: AttaqueModels[] = [];
 
-  constructor(private modalController: ModalController, private pokedexService: PokedexService) { }
+  constructor(private modalController: ModalController, private pokedexService: PokedexService) {
+
+  }
 
   dismissModal() {
     this.modalController.dismiss();
@@ -43,9 +45,8 @@ export class AddComponent {
       finalListAttaques.push(attaque);
     });
 
-    this.pokemon.listAttaque = finalListAttaques;
+    this.pokemon.listAttaques = finalListAttaques;
 
-    //on appelle le service pour ajouter le pokemon
     this.pokedexService.addPokemon(this.pokemon).subscribe(() => {
       this.modalController.dismiss(this.pokemon);
     });

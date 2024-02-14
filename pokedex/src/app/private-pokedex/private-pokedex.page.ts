@@ -29,6 +29,7 @@ import {
 } from "ng-apexcharts";
 import {TypePokemonComponent} from "./modals/type-pokemon/type-pokemon.component";
 import {AddComponent} from "./add/add.component";
+import {PokedexService} from "../services/pokedex.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -93,34 +94,17 @@ export class PrivatePokedexPage {
     }
   };
 
-  //DefaultPokemonModels
-
-  type1: TypeModels = allTypePokemon[0];
-  type2: TypeModels = allTypePokemon[1];
-
-  critique: CritiqueModels = new CritiqueModels(1, 0.45, "Le lanceur charge l'ennemi avec une force énorme.");
-  categorie: CategorieModels = new CategorieModels(1, "Physique", "Le lanceur charge l'ennemi avec une force énorme.");
-  status: StatusModels = new StatusModels(1, "Brulure", "Le lanceur charge l'ennemi avec une force énorme.");
-  effet: EffetModels = AllEffectPokemon[0];
-
-  attaque: AttaqueModels = new AttaqueModels(1, "Charge", 1, 40, 35, 0, "Le lanceur charge l'ennemi avec une force énorme.", 100, null, this.effet, this.type1, this.categorie, this.critique);
-  attaque2: AttaqueModels = new AttaqueModels(2, "Charge", 1, 40, 35, 0, "Le lanceur charge l'ennemi avec une force énorme.", 100, null, this.effet, this.type1, this.categorie, this.critique);
-
-  listAttaque: ListAttaqueModels = new ListAttaqueModels(1, 1, 1, this.attaque);
-  listAttaque2: ListAttaqueModels = new ListAttaqueModels(1, 2, 1, this.attaque2);
-
-  pokemonDefault: DefaultPokemonModels = new DefaultPokemonModels(1, "https://static.printler.com/cache/c/5/a/7/7/8/c5a7786aed7583aa0e478c3ef4131764695ef603.jpg", "6.9 kg", "Bulbizarre", "Bulbizarre peut survivre sans manger pendant plusieurs jours. En revanche, s'il n'est pas exposé au soleil, il affaiblit. Il évolue en Herbizarre.", 45, 45, 49, 49, 65, 65, 318, 64, 16, 65, "0.7 m", this.type1, this.type2, null, null, [this.listAttaque, this.listAttaque2], null, null, null);
-
   selectedTypes: TypeModels[] = [];
   searchText: string = "";
 
-  constructor(private userService: UserService, private modalController: ModalController) {
+  constructor(private userService: UserService, private modalController: ModalController, private pokedexService: PokedexService) {
     this.isConnectSubscription = this.userService.isLogged$.subscribe((value) => {
       this.isConnect = value;
     });
-    this.pokemons.push(this.pokemonDefault);
-    this.pokemons.push(this.pokemonDefault);
-    this.pokemons.push(this.pokemonDefault);
+    pokedexService.getAllPrivatePokemon().subscribe((value) => {
+      this.pokemons = value;
+      console.log(this.pokemons);
+    });
   }
 
   async openTypePokemonModal(type: TypeModels) {

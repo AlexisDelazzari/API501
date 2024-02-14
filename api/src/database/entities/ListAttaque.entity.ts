@@ -7,6 +7,7 @@ import {
     PrimaryColumn,
 } from 'typeorm';
 import {AttaqueEntity} from "./Attaque.entity";
+import {DefaultPokemonEntity} from "./DefaultPokemon.entity";
 
 @Entity()
 export class ListAttaqueEntity {
@@ -23,4 +24,8 @@ export class ListAttaqueEntity {
     @ManyToOne(type => AttaqueEntity, attaque => attaque.uuid)
     @JoinColumn({ name: 'uuidAttaque', referencedColumnName: 'uuid' })
     attaque?: AttaqueEntity;
+
+    @ManyToOne(() => DefaultPokemonEntity, (defaultPokemon) => defaultPokemon.listAttaques)
+    @JoinColumn({ name: 'defaultPokemonId', referencedColumnName: 'id' })
+    defaultPokemon?: DefaultPokemonEntity;
 }

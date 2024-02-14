@@ -26,12 +26,7 @@
       <ion-col size="12" size-md="6" class="ion-padding">
         <ion-searchbar [(ngModel)]="searchText" placeholder="Rechercher un pokemon"></ion-searchbar>
       </ion-col>
-      <ion-col size="12" size-md="3" class="ion-padding">
-        <ion-select multiple="true" placeholder="Type du pokemon" [(ngModel)]="selectedTypes">
-          <ion-select-option *ngFor="let type of allTypePokemon" [value]="type">{{ type.name }}</ion-select-option>
-        </ion-select>
-      </ion-col>
-      <ion-col size="12" size-md="3" class="ion-padding ion-text-right">
+      <ion-col size="12" size-md="3" class="ion-padding ion-text-right mt-2">
         <ion-button class="btn-add" (click)="openAddPokemonModal()">
           Ajouter un Pokemon
         </ion-button>
@@ -52,11 +47,11 @@
             <ion-card-title>{{ pokemon.nom[0].toUpperCase() + pokemon.nom.slice(1) }}</ion-card-title>
             <ion-card-subtitle class="ml-4 mt-2">{{ pokemon.description }}</ion-card-subtitle>
             <ion-row class="ion-text-center ion-justify-content-center">
-              <ion-chip *ngIf="pokemon.type1" (click)="openTypePokemonModal(pokemon.type1)">
+              <ion-chip *ngIf="pokemon.type1 && pokemon.type1.name !== 'Aucun'" (click)="openTypePokemonModal(pokemon.type1)">
                 <ion-label>{{ pokemon.type1.name }}</ion-label>
                 <img [src]="pokemon.type1.image" [alt]="pokemon.type1.name" width="20" height="20" class="ml-4">
               </ion-chip>
-              <ion-chip *ngIf="pokemon.type2" (click)="openTypePokemonModal(pokemon.type2)">
+              <ion-chip *ngIf="pokemon.type2 && pokemon.type2.name !== 'Aucun'" (click)="openTypePokemonModal(pokemon.type2)">
                 <ion-label>{{ pokemon.type2.name }}</ion-label>
                 <img [src]="pokemon.type2.image" [alt]="pokemon.type2.name" width="20" height="20" class="ml-4">
               </ion-chip>
@@ -72,7 +67,7 @@
               </ion-col>
             </ion-row>
             <ion-row class="ion-text-center ion-justify-content-center">
-              <ion-col *ngFor="let list of pokemon.listAttaque" class=" rounded-xl" size="12" size-md="6">
+              <ion-col *ngFor="let list of pokemon.listAttaques" class=" rounded-xl" size="12" size-md="6">
                 <ion-card class="ion-padding ion-margin ion-text-wrap rounded-xl border border-primary">
                   <img [src]="list.attaque.effet?.image" [alt]="list.attaque.effet?.image" class="test rounded-xl" height="20">
                   <ion-card-header>

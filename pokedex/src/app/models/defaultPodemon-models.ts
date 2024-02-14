@@ -25,7 +25,7 @@ export class DefaultPokemonModels {
     type2?: TypeModels;
     talent1?: TalentEffetModels | null;
     talent2?: TalentEffetModels | null;
-    listAttaque: ListAttaqueModels[] | undefined;
+    listAttaques: ListAttaqueModels[] | undefined;
     lieux?: LieuxModels | null;
     listItemDrop?: ListItemDropModels | null;
     pokemonEvolution?: DefaultPokemonModels | null;
@@ -51,7 +51,7 @@ export class DefaultPokemonModels {
     type2?: TypeModels,
     talent1?: TalentEffetModels | null,
     talent2?: TalentEffetModels | null,
-    listAttaque?: ListAttaqueModels[],
+    listAttaques?: ListAttaqueModels[],
     lieux?: LieuxModels | null,
     listItemDrop?: ListItemDropModels | null,
     pokemonEvolution?: DefaultPokemonModels | null
@@ -76,7 +76,7 @@ export class DefaultPokemonModels {
       this.type2 = type2;
       this.talent1 = talent1;
       this.talent2 = talent2
-      this.listAttaque = listAttaque;
+      this.listAttaques = listAttaques;
       this.lieux = lieux;
       this.listItemDrop = listItemDrop;
       this.pokemonEvolution = pokemonEvolution;
