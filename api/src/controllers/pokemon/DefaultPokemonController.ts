@@ -121,7 +121,8 @@ export class DefaultPokemonController {
             let maxListAttaque = await ListAttaqueRepository.getLastUuidList();
 
             const tabListAttaque = []
-            for (const list of req.body.listAttaque) {
+            console.log(req.body)
+            for (const list of req.body.listAttaques) {
                 const attaqueEntity = new AttaqueEntity();
                 attaqueEntity.nom = list.attaque.nom;
                 attaqueEntity.puissance = list.attaque.puissance;
