@@ -240,7 +240,7 @@ export class DefaultPokemonController {
                 attaqueEntity.pp = list.attaque.pp;
                 attaqueEntity.description = list.attaque.description;
                 attaqueEntity.type = await TypeRepository.findOneByOrFail({uuid: list.attaque.type.id});
-                attaqueEntity.niveau = list.attaque.niveau;
+                attaqueEntity.niveau = list.attaque.niveau ?? 0;
                 attaqueEntity.categorie = null;
                 attaqueEntity.effet = await TypeRepository.findOneByOrFail({uuid: list.attaque.effet.id});
                 attaqueEntity.critique = null;
@@ -253,7 +253,7 @@ export class DefaultPokemonController {
 
                 listAttaqueEntity.uuidList = list.uuidList;
                 listAttaqueEntity.attaque = attaqueEntity;
-                listAttaqueEntity.Niveau = list.niveau;
+                listAttaqueEntity.Niveau = list.niveau ?? 0;
                 listAttaqueEntity.attaque = attaqueEntity;
                 listAttaqueEntity.idAttaque = attaqueEntity.uuid;
 
