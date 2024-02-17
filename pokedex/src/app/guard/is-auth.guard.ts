@@ -14,6 +14,4 @@ export class IsAuthGuard implements CanActivate {
     let token = localStorage.getItem("token")
     return this.userService.verifToken(token)
   }
-
-
 }

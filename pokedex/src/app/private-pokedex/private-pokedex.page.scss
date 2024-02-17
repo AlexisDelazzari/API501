@@ -1,0 +1,15 @@
+.test {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}

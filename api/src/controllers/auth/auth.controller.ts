@@ -26,7 +26,6 @@ export class AuthController {
                 return res.status(HttpCode.NOT_FOUND).json({ message: "Utilisateur non trouvé" });
             }
             const passwordIsValid = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
-            console.log(passwordIsValid, password);
             if (passwordIsValid !== password) {
                 return res.status(HttpCode.UNAUTHORIZED).json({ message: "Mot de passe incorrect" });
             }
@@ -37,7 +36,6 @@ export class AuthController {
             );
             res.status(200).json({ token });
         } catch (error) {
-            console.error(error);
             res.status(HttpCode.INTERNAL_ERROR).json({ message: "Connexion échouée" });
         }
     }
@@ -60,14 +58,13 @@ export class AuthController {
             );
             res.status(HttpCode.OK).json({ token });
         } catch (error) {
-            console.error(error);
             res.status(HttpCode.INTERNAL_ERROR).json({ message: "Inscription échouée" });
         }
     }
 
     async checkToken(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization
+            const token = req.headers.authorization?.split(" ")[1];
             if (!token) {
                 return res.status(HttpCode.UNAUTHORIZED).json({ message: "Vous n'êtes pas authentifiéeee" });
             }
@@ -77,7 +74,6 @@ export class AuthController {
             }
             res.status(HttpCode.OK).json({ message: "Vous êtes authentifié" });
         } catch (error) {
-            console.error(error);
             res.status(HttpCode.INTERNAL_ERROR).json({ message: "Vous n'êtes pas authentifié" });
         }
     }

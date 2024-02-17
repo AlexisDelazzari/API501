@@ -1,3 +1,5 @@
+import {TypeModels} from "./type-models";
+
 export interface Pokedex {
   id: number,
   nom: string,
@@ -22,8 +24,8 @@ export interface Pokemon {
   niveauEvolution: number;
   defenseSpeciale: number;
   taille: string;
-  type1?: Type;
-  type2?: Type | null;
+  type1?: TypeModels;
+  type2?: TypeModels;
   talent1?: Talent;
   talent2?: Talent | null;
   listAttaque?: ListAttaque;

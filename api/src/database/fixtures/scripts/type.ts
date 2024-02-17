@@ -8,7 +8,9 @@ export default async function insertType() {
     for (const type of types) {
         const typeEntity = new TypeEntity();
         typeEntity.uuid = type.id;
-        typeEntity.name = type.nom;
+        typeEntity.name = type.name
+        typeEntity.image = type.image;
+        typeEntity.description = type.description;
         typeEntities.push(typeEntity);
     }
 

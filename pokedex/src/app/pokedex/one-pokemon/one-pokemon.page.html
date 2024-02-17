@@ -22,9 +22,14 @@
           <img [src]="onePokemon.image" class="">
         </div>
         <div class="flex w-full flex-wrap items-center justify-center">
-          <div class="flex w-1/2 flex-col items-end pr-2">
-            <img *ngIf="onePokemon.type1?.name" [src]="getImageType(onePokemon.type1!.name)" class="mb-2 w-full max-w-[150px]">
-            <img *ngIf="onePokemon.type2?.name" [src]="getImageType(onePokemon.type2!.name)" class="w-full max-w-[150px]">
+          <div class="flex w-1/4 flex-col h-full items-end justify-between">
+            <img *ngIf="onePokemon.type1?.name" [src]="onePokemon.type1!.image" width="20" height="20" class="ml-4 mr-4">
+            <img *ngIf="onePokemon.type2?.name" [src]="onePokemon.type2!.image" width="20" height="20" class="ml-4 mt-2 mr-4">
+          </div>
+          <div class="flex w-1/4 flex-col h-full items-start justify-between">
+            <p class="!m-0 !text
+            -xl mb-2">{{onePokemon.type1?.name}}</p>
+            <p class="!m-0 !text-xl">{{onePokemon.type2?.name}}</p>
           </div>
           <div class="flex w-1/2 flex-col h-full items-start justify-between">
             <p class="!m-0 !text-xl mb-2">Poids : {{onePokemon.poids}}</p>

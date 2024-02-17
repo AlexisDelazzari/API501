@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ajouter une Attaque</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-img class="img" src="assets/icon/close.png" alt="Close"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form #ajoutAttaqueForm="ngForm">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="attaque.nom" name="nom" required label="Nom de l'attaque"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" [(ngModel)]="attaque.puissance" name="puissance" required label="Puissance de l'attaque"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" [(ngModel)]="attaque.pp" name="pp" required label="Pp de l'attaque"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [(ngModel)]="attaque.description" name="description" required label="Description de l'attaque"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="attaque.type" name="type" required label="Type de l'attaque">
+        <ion-select-option *ngFor="let type of allTypes" [value]="type">{{ type.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="attaque.effet" name="effet" required label="Effet de l'attaque">
+        <ion-select-option *ngFor="let effet of allEffet" [value]="effet">{{ effet.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button type="submit" class="input-submit" expand="block" [disabled]="!ajoutAttaqueForm.valid" (click)="addAttaque()">Ajouter</ion-button>
+  </form>
+</ion-content>
+
+
+

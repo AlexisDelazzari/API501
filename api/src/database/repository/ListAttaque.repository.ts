@@ -10,4 +10,15 @@ export const ListAttaqueRepository = dataSource.getRepository(ListAttaqueEntity)
             }
         );
     },
+
+    async getLastUuidList() : Promise<number> {
+        const lastUuidList = await this.createQueryBuilder("listAttaque")
+            .select("MAX(listAttaque.uuidList)", "max")
+            .getRawOne();
+        return lastUuidList.max;
+    },
+
+    async deleteListAttaque(listAttaque : ListAttaqueEntity[]) : Promise<void> {
+        await this.remove(listAttaque);
+    }
 })

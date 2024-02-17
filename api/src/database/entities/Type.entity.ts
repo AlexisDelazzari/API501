@@ -13,4 +13,10 @@ export class TypeEntity {
 
     @Column({ type: 'varchar', length: 255 })
     name: string;
+
+    @Column({ type: 'longtext' })
+    image: string;
+
+    @Column({ type: 'varchar', length: 255 })
+    description: string;
 }

@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ajouter un Pokémon</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-img class="img" src="assets/icon/close.png" alt="Close"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form #ajoutPokemonForm="ngForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="pokemon.nom" name="nom" required label="Nom"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.poids" name="poids" required label="Poids"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea [(ngModel)]="pokemon.description" name="description" required label="Description"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.tauxCapture" name="tauxCapture" required label="Taux de capture"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.pv" name="pv" required label="PV"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.defense" name="defense" required label="Défense"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.attaque" name="attaque" required label="Attaque"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.vitesse" name="vitesse" required label="Vitesse"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.taille" name="taille" required label="Taille"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.xp" name="xp" required label="XP"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.attaqueSpeciale" name="attaqueSpeciale" required label="Attaque spéciale"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="pokemon.defenseSpeciale" name="defenseSpeciale" required label="Défense spéciale"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select [(ngModel)]="pokemon.type1" name="type1" required label="Type1">
+            <ion-select-option *ngFor="let type of allTypes" [value]="type">{{ type.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select [(ngModel)]="pokemon.type2" name="type2" required label="Type2">
+            <ion-select-option *ngFor="let type of allTypes" [value]="type">{{ type.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="file" (change)="onFileChange($event)" name="image" required label="Image"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="pokemon.image">
+          <ion-img [src]="pokemon.image" alt="Image du pokémon"></ion-img>
+        </ion-item>
+        <ion-item *ngIf="listAttaques.length > 0 && selectedAttaques.length === 0" class="red">
+          Attention, vous devez sélectionner parmi les attaques ajoutées.
+        </ion-item>
+
+        <ion-item *ngIf="listAttaques.length > 0">
+          <ion-select multiple="true" [(ngModel)]="selectedAttaques" name="selectedAttaques" required label="Attaques">
+            <ion-select-option *ngFor="let attack of listAttaques" [value]="attack">{{ attack.nom }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="listAttaques.length === 0">
+          <ion-label>Aucune attaque disponible</ion-label>
+          <ion-spinner name="crescent"></ion-spinner>
+        </ion-item>
+        <ion-button (click)="openAddAttaqueModal()" expand="block" fill="clear" class="add-attack-button">
+          Ajouter une attaque
+        </ion-button>
+      </ion-card-content>
+
+      <ion-button (click)="addPokemon()" [disabled]="!ajoutPokemonForm.valid" expand="block" *ngIf="!isUpdate">
+        Ajouter le pokémon
+      </ion-button>
+      <ion-button (click)="updatePokemon()" [disabled]="!ajoutPokemonForm.valid" expand="block" *ngIf="isUpdate">
+        Modifier le pokémon
+      </ion-button>
+
+    </ion-card>
+  </form>
+</ion-content>

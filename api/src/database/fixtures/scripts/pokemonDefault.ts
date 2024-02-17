@@ -27,13 +27,15 @@ export default async function insertPokemonDefault() {
         pokemonEntity.niveauEvolution = pokemon.niveauEvolution;
         pokemonEntity.defenseSpeciale = pokemon.defenseSpeciale;
         pokemonEntity.taille = pokemon.taille;
+        pokemonEntity.hasHero = false;
+        pokemonEntity.proprietaire = null;
 
         // Utilisation des clés du JSON pour les associations
         pokemonEntity.type1 = await TypeRepository.findOneByOrFail({uuid: pokemon.uuidType1});
         pokemonEntity.type2 = (pokemon.uuidType2 === null) ? null : await TypeRepository.findOneByOrFail({uuid: pokemon.uuidType2});
         pokemonEntity.talent1 = await TalentEffetRepository.findOneByOrFail({uuid: pokemon.uuidTalent1});
         pokemonEntity.talent2 = (pokemon.uuidTalent2 === null) ? null : await TalentEffetRepository.findOneByOrFail({uuid: pokemon.uuidTalent2});
-        pokemonEntity.listAttaque = await ListAttaqueRepository.findOneByOrFail({uuidList: pokemon.uuidListDefaultAttaque});
+        pokemonEntity.listAttaques = []
         pokemonEntity.lieux = (pokemon.uuidLieux === null) ? null : await LieuxRepository.findOneByOrFail({uuid: pokemon.uuidLieux});
         pokemonEntity.listItemDrop = await ListItemDropRepository.findOneByOrFail({uuidList: pokemon.uuidlistLoot});
         pokemonEntity.pokemonEvolution = (pokemon.idPokemonEvolution === null) ? null :  await DefaultPokemonRepository.findOneByOrFail({id: pokemon.idPokemonEvolution});
