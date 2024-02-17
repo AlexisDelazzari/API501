@@ -89,5 +89,22 @@ export class PokedexService {
         });
     });
   }
+  updatePokemon(pokemon: DefaultPokemonModels): Observable<DefaultPokemonModels> {
+    return new Observable<DefaultPokemonModels>((observer) => {
+      fetch(`${this.apiUrl}/pokedex/${pokemon.id}`, {
+        method: 'PUT',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }),
+        body: JSON.stringify(pokemon),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          observer.next(response);
+          observer.complete();
+        });
+    });
+  }
 }
 

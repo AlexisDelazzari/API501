@@ -62,6 +62,9 @@
         <ion-item>
           <ion-input type="file" (change)="onFileChange($event)" name="image" required label="Image"></ion-input>
         </ion-item>
+        <ion-item *ngIf="pokemon.image">
+          <ion-img [src]="pokemon.image" alt="Image du pokémon"></ion-img>
+        </ion-item>
         <ion-item *ngIf="listAttaques.length > 0 && selectedAttaques.length === 0" class="red">
           Attention, vous devez sélectionner parmi les attaques ajoutées.
         </ion-item>
@@ -71,6 +74,7 @@
             <ion-select-option *ngFor="let attack of listAttaques" [value]="attack">{{ attack.nom }}</ion-select-option>
           </ion-select>
         </ion-item>
+
         <ion-item *ngIf="listAttaques.length === 0">
           <ion-label>Aucune attaque disponible</ion-label>
           <ion-spinner name="crescent"></ion-spinner>
@@ -80,8 +84,11 @@
         </ion-button>
       </ion-card-content>
 
-      <ion-button (click)="addPokemon()" [disabled]="!ajoutPokemonForm.valid" expand="block">
+      <ion-button (click)="addPokemon()" [disabled]="!ajoutPokemonForm.valid" expand="block" *ngIf="!isUpdate">
         Ajouter le pokémon
+      </ion-button>
+      <ion-button (click)="updatePokemon()" [disabled]="!ajoutPokemonForm.valid" expand="block" *ngIf="isUpdate">
+        Modifier le pokémon
       </ion-button>
 
     </ion-card>

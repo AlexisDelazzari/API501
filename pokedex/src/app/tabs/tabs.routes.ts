@@ -27,7 +27,6 @@ export const routes: Routes = [
         path: 'pokedex/:id',
         loadComponent: () => import('../pokedex/one-pokemon/one-pokemon.page').then( m => m.OnePokemonPage),
         canActivate: [UpdateTokenService]
-
       },
       {
         path: 'connexion',

@@ -139,6 +139,27 @@ export class PrivatePokedexPage  {
     }
   }
 
+  async openEditPokemonModal(pokemon:DefaultPokemonModels) {
+    const modal = await this.modalController.create({
+      component: AddComponent,
+      backdropDismiss: false,
+      componentProps: {
+        pokemon: pokemon,
+        isUpdate: true
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      this.pokemons = this.pokemons.map((p) => {
+        if (p.id === data.id) {
+          return data;
+        }
+        return p;
+      });
+    }
+  }
+
   async openDeletePokemonModal(pokemon:DefaultPokemonModels) {
     const modal = await this.modalController.create({
       component: DeleteComponent,
